@@ -10,6 +10,7 @@ What should a project proposal have?
 
  ### Ideas
  - Image editor
+ - Spreadsheet program?
 
   Games
   - Platform game
