@@ -17,3 +17,4 @@ What should a project proposal have?
   - Javamon
   - Monopoly??
   - Strategy game
+  - Strategy RPG
