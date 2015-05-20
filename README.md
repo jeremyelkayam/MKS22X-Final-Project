@@ -17,4 +17,4 @@ What should a project proposal have?
   - Javamon
   - Monopoly??
   - Strategy game
-  - Strategy RPG
+  - Strategy RPG - Could incorporate complex AI, pathfinding, CS teachers as characters
