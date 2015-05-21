@@ -1,19 +1,15 @@
-# MKS22X-Final-Project
-Second semester final project for Mr. K's APCS class.
-What should a project proposal have?
-  - Brief description
-  - Diagrams & how the user interacts
-  - What will be challenging
-  - What are the minimum features for a working project?
+# MKS22X Final Project
+### Excel Spreadsheet
+A spreadsheet program similar to Microsoft Excel
+
+#### Roadmap
+- Create an internal representation of the spreadsheet (Create a Data object and make a 2D array of it)
+- Storing data (strings, ints, floats)
+- Create an interactive interface using Java's GUI (Swing)
+- Saving/loading spreadsheets
+- Functions (sum, difference, multiplication, division, integer division, modulus)
+- Tables & charts
 
 
-
- ### Ideas
- - Image editor
-
-  Games
-  - Platform game
-  - Top down game based on https://scratch.mit.edu/projects/16148215/
-  - Javamon
-  - Monopoly??
-  - Strategy game
+## Changelog
+Write stuff here once we have a working version
