@@ -1,5 +1,6 @@
 /*What does a cell need?
   - Must store any type of data that you can enter into the spreadsheet
+  - 
   
  */
 public class Cell<T>{

@@ -1,8 +1,8 @@
 # MKS22X Final Project
-### Excel Spreadsheet
-A spreadsheet program similar to Microsoft Excel
+### "Stuycrosoft XL"
+A spreadsheet program not at all based on Microsoft Excel
 
-#### Roadmap
+### Roadmap
 - Create an internal representation of the spreadsheet (Create a Data object and make a 2D array of it)
 - Storing data (strings, ints, floats)
 - Create an interactive interface using Java's GUI (Swing)
@@ -11,5 +11,5 @@ A spreadsheet program similar to Microsoft Excel
 - Tables & charts
 
 
-## Changelog
+### Changelog
 Write stuff here once we have a working version
