@@ -1,16 +1,31 @@
+import java.util.*;
 public class Sheet{
     Cell[][]sheet;
     public Sheet(){
-	sheet=new Cell[50][50];
+	sheet=new Cell[20][20];
     }
     public Cell getCell(int row, int col){
-	return cell[row][col];
+	return sheet[row][col];
     }
-    public void enlarge(boolean sideways){
+    private void enlarge(boolean sideways){
+	Cell[][]newSheet;
 	if(sideways){//expand sideways
-	    
+	    newSheet=new Cell[sheet.length][sheet[0].length*2];
 	}else{//expand vertically
-
+	    newSheet=new Cell[sheet.length*2][sheet[0].length];
 	}
+	for(int r=0;r<sheet.length;r++){
+	    for(int c=0;c<sheet[0].length;c++){
+		    newSheet[r][c]=sheet[r][c];
+	    }
+	}
+	sheet=newSheet;
+    }
+    public String toString(){
+	String result="";
+	for(Cell[]z : sheet){
+	    result+=Arrays.toString(z)+"\n";
+	}
+	return result;
     }
 }
