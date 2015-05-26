@@ -18,12 +18,28 @@ public class Interface extends JFrame{
 	pane.setLayout(new GridLayout(20,5));
 	text = new JTextField();
 	//Feel free to delete the following code, it's just me trying out stuff
+	//added all of the text boxes
 	pane.add(text);
 	pane.add(new JTextField());
 	pane.add(new JTextField());
-	for(int z=0;z<300;z++){
+	for(int z=0;z<301;z++){
 	    pane.add(new JTextField());
 	}
+
+	//adding menu bar
+	JMenuBar menuBar;
+	JMenu FileMenu;
+
+	//create the menu bar
+	menuBar = new JMenuBar();
+
+	//build the first menu
+	FileMenu = new JMenu("File");
+	//open File menu with crtl + f
+	FileMenu.setMnemonic('F');
+	menuBar.add(FileMenu);
+	
+	setJMenuBar(menuBar);
     }
     public static void main(String[]args){
 	Interface blah = new Interface();
