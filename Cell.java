@@ -8,14 +8,22 @@ public class Cell{
     double data;//store all numbers internally as doubles since it can only store numbers and strings
     boolean containsNumber;//whether or not we have a number
     String str; //data in string form
+    boolean emptyCell;
     public Cell(double d){
 	data=d;
 	str=String.valueOf(d);
 	containsNumber=true;
+	emptyCell=false;
     }
     public Cell(String s){
 	str=s;
 	containsNumber=false;
+	emptyCell=s.equals("");
+    }
+    public Cell(){
+	str="";
+	containsNumber=false;
+	emptyCell=true;
     }
     public double getData() throws UnsupportedOperationException{
 	if(containsNumber){
@@ -38,6 +46,7 @@ public class Cell{
     public void setData(String s){
 	str=s;
 	containsNumber=false;
+	emptyCell=s.equals("");
     }
     
 }

@@ -18,7 +18,7 @@ A spreadsheet program not at all based on Microsoft Excel
 
 ### Changelog
 #### 5/26
-- Jeremy: Updated readme, added unfinished setData() method in Sheet class
+- Jeremy: Updated readme, added setData(number) method in Cell class, added new Cell constructor for empty cell
 
 ### Stable Versions
 Due 6/1, 6/8, 6/15
