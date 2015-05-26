@@ -7,6 +7,9 @@ public class Sheet{
     public Cell getCell(int row, int col){
 	return sheet[row][col];
     }
+    public void setData(int row, int col, double value){
+
+    }
     private void enlarge(boolean sideways){
 	Cell[][]newSheet;
 	if(sideways){//expand sideways

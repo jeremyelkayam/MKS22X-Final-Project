@@ -10,6 +10,15 @@ A spreadsheet program not at all based on Microsoft Excel
 - Functions (sum, difference, multiplication, division, integer division, modulus)
 - Tables & charts
 
+### Goals
+- Interface using GUI
+- Internal representation of spreadsheet
+- Functions - add/subtract/multiply/divide 
+- Additional functions
 
 ### Changelog
-Write stuff here once we have a working version
+#### 5/26
+- Jeremy: Updated readme, added unfinished setData() method in Sheet class
+
+### Stable Versions
+Due 6/1, 6/8, 6/15
