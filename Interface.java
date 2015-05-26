@@ -29,6 +29,7 @@ public class Interface extends JFrame{
 	//adding menu bar
 	JMenuBar menuBar;
 	JMenu FileMenu;
+	JMenuItem menuItem;
 
 	//create the menu bar
 	menuBar = new JMenuBar();
@@ -38,6 +39,11 @@ public class Interface extends JFrame{
 	//open File menu with crtl + f
 	FileMenu.setMnemonic('F');
 	menuBar.add(FileMenu);
+	
+	//adding items to FileMenu
+	menuItem = new JMenuItem("New");
+	menuItem.getAccessibleContext().setAccessibleDescription("Open a new file");
+	FileMenu.add(menuItem);
 	
 	setJMenuBar(menuBar);
     }
