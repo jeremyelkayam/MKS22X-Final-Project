@@ -5,7 +5,7 @@ public class Sheet{
 	sheet=new Cell[20][20];
 	for(int r=0;r<sheet.length;r++){
 	    for(int c=0;c<sheet.length;c++){
-		sheet[r][c]=new Cell();
+		sheet[r][c]=new Cell(this);
 	    }
 	}
     }

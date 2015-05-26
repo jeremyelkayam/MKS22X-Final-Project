@@ -9,21 +9,26 @@ public class Cell{
     boolean containsNumber;//whether or not we have a number
     String str; //data in string form
     boolean emptyCell;
-    public Cell(double d){
+    boolean doesMath;
+    Sheet sheet;
+    public Cell(Sheet t,double d){
 	data=d;
 	str=String.valueOf(d);
 	containsNumber=true;
 	emptyCell=false;
+	sheet=t;
     }
-    public Cell(String s){
+    public Cell(Sheet t,String s){
 	str=s;
 	containsNumber=false;
 	emptyCell=s.equals("");
+	sheet=t;
     }
-    public Cell(){
+    public Cell(Sheet t){
 	str="";
 	containsNumber=false;
 	emptyCell=true;
+	sheet=t;
     }
     public double getData() throws UnsupportedOperationException{
 	if(containsNumber){
