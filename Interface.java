@@ -57,8 +57,14 @@ public class Interface extends JFrame{
 	menuItem.getAccessibleContext().setAccessibleDescription("Rename file");
 	fileMenu.add(menuItem);
 
- 
-	
+	//adding items to editMenu
+	ImageIcon undo = new ImageIcon("images/undo.gif");
+	Image scaleImage = undo.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
+	ImageIcon undoIcon = new ImageIcon(scaleImage);
+	menuItem = new JMenuItem("Undo", undoIcon);
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
+	menuItem.getAccessibleContext().setAccessibleDescription("Undo");
+	editMenu.add(menuItem);
 	
 	setJMenuBar(menuBar);
     }
