@@ -77,6 +77,13 @@ public class Interface extends JFrame{
 	//add line seperator
 	editMenu.addSeparator();
 
+	ImageIcon cut = new ImageIcon("images/cut.png");
+	Image cutScaled = cut.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
+	ImageIcon cutIcon = new ImageIcon(cutScaled);
+	menuItem = new JMenuItem("Cut", cutIcon);
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
+	menuItem.getAccessibleContext().setAccessibleDescription("Cut");
+	editMenu.add(menuItem);
 	
 
 	setJMenuBar(menuBar);
