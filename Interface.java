@@ -58,12 +58,20 @@ public class Interface extends JFrame{
 	fileMenu.add(menuItem);
 
 	//adding items to editMenu
-	ImageIcon undo = new ImageIcon("images/undo.gif");
-	Image scaleImage = undo.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
-	ImageIcon undoIcon = new ImageIcon(scaleImage);
+	ImageIcon undo = new ImageIcon("images/undo.png");
+	Image undoScaled = undo.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
+	ImageIcon undoIcon = new ImageIcon(undoScaled);
 	menuItem = new JMenuItem("Undo", undoIcon);
 	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
 	menuItem.getAccessibleContext().setAccessibleDescription("Undo");
+	editMenu.add(menuItem);
+
+	ImageIcon redo = new ImageIcon("images/redo.png");
+	Image redoScaled = redo.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
+	ImageIcon redoIcon = new ImageIcon(redoScaled);
+	menuItem = new JMenuItem("Undo", redoIcon);
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
+	menuItem.getAccessibleContext().setAccessibleDescription("Redo");
 	editMenu.add(menuItem);
 	
 	setJMenuBar(menuBar);
