@@ -37,6 +37,9 @@ public class Interface extends JFrame{
 	//build the first menu
 	fileMenu = new JMenu("File");
 	menuBar.add(fileMenu);
+
+	editMenu = new JMenu("Edit");
+	menuBar.add(editMenu);
 	
 	//adding items to FileMenu
 	menuItem = new JMenuItem("New");
@@ -53,9 +56,6 @@ public class Interface extends JFrame{
 	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
 	menuItem.getAccessibleContext().setAccessibleDescription("Rename file");
 	fileMenu.add(menuItem);
-
-
-
 
  
 	
