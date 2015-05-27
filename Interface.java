@@ -85,6 +85,21 @@ public class Interface extends JFrame{
 	menuItem.getAccessibleContext().setAccessibleDescription("Cut");
 	editMenu.add(menuItem);
 	
+	ImageIcon copy = new ImageIcon("images/copy.png");
+	Image copyScaled = copy.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
+	ImageIcon copyIcon = new ImageIcon(copyScaled);
+	menuItem = new JMenuItem("Copy", copyIcon);
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
+	menuItem.getAccessibleContext().setAccessibleDescription("Copy");
+	editMenu.add(menuItem);
+
+	ImageIcon paste = new ImageIcon("images/paste.png");
+	Image pasteScaled = paste.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
+	ImageIcon pasteIcon = new ImageIcon(pasteScaled);
+	menuItem = new JMenuItem("Paste", pasteIcon);
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.ALT_MASK));
+	menuItem.getAccessibleContext().setAccessibleDescription("Paste");
+	editMenu.add(menuItem);
 
 	setJMenuBar(menuBar);
     }
