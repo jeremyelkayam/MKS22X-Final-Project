@@ -74,6 +74,11 @@ public class Interface extends JFrame{
 	menuItem.getAccessibleContext().setAccessibleDescription("Redo");
 	editMenu.add(menuItem);
 	
+	//add line seperator
+	editMenu.addSeparator();
+
+	
+
 	setJMenuBar(menuBar);
     }
     public static void main(String[]args){
