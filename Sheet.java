@@ -3,9 +3,17 @@ public class Sheet{
     Cell[][]sheet;
     public Sheet(){
 	sheet=new Cell[20][20];
+	for(int r=0;r<sheet.length;r++){
+	    for(int c=0;c<sheet.length;c++){
+		sheet[r][c]=new Cell(this);
+	    }
+	}
     }
     public Cell getCell(int row, int col){
 	return sheet[row][col];
+    }
+    public void setData(int row, int col, double value){
+	sheet[row][col].setData(value);
     }
     private void enlarge(boolean sideways){
 	Cell[][]newSheet;
