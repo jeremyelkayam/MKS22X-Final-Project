@@ -69,7 +69,7 @@ public class Interface extends JFrame{
 	ImageIcon redo = new ImageIcon("images/redo.png");
 	Image redoScaled = redo.getImage().getScaledInstance(16,16,Image.SCALE_DEFAULT);
 	ImageIcon redoIcon = new ImageIcon(redoScaled);
-	menuItem = new JMenuItem("Undo", redoIcon);
+	menuItem = new JMenuItem("Redo", redoIcon);
 	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
 	menuItem.getAccessibleContext().setAccessibleDescription("Redo");
 	editMenu.add(menuItem);
@@ -99,6 +99,11 @@ public class Interface extends JFrame{
 	menuItem = new JMenuItem("Paste", pasteIcon);
 	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.ALT_MASK));
 	menuItem.getAccessibleContext().setAccessibleDescription("Paste");
+	editMenu.add(menuItem);
+
+	menuItem = new JMenuItem("Find..");
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.ALT_MASK));
+	menuItem.getAccessibleContext().setAccessibleDescription("Find..");
 	editMenu.add(menuItem);
 
 	setJMenuBar(menuBar);
