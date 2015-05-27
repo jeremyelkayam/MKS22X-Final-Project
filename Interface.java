@@ -36,14 +36,20 @@ public class Interface extends JFrame{
 
 	//build the first menu
 	FileMenu = new JMenu("File");
-	//open File menu with crtl + f
-	FileMenu.setMnemonic('F');
 	menuBar.add(FileMenu);
 	
 	//adding items to FileMenu
 	menuItem = new JMenuItem("New");
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
 	menuItem.getAccessibleContext().setAccessibleDescription("Open a new file");
 	FileMenu.add(menuItem);
+
+	menuItem = new JMenuItem("Open");
+	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.ALT_MASK));
+	menuItem.getAccessibleContext().setAccessibleDescription("Open existing file");
+	FileMenu.add(menuItem);
+
+	
 	
 	setJMenuBar(menuBar);
     }
