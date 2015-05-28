@@ -17,6 +17,8 @@ public class Interface extends JFrame{
 	pane.setLayout(new GridLayout(20,5));
 	
 	createMenu();
+	createTable();
+
     }
 
     public void createMenu(){
@@ -108,7 +110,13 @@ public class Interface extends JFrame{
 	setJMenuBar(menuBar);
     }
 
-    
+    public void createTable(){
+	JTable table = new JTable(100,26);
+	
+	JScrollPane scrollPane = new JScrollPane(table);
+	add(scrollPane);
+    }
+
     public static void main(String[]args){
 	Interface blah = new Interface();
 	blah.setVisible(true);
