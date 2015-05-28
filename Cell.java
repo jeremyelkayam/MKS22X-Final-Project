@@ -53,8 +53,9 @@ public class Cell{
 	containsNumber=false;
 	emptyCell=s.equals("");
     }
-    public boolean emptyCell(){
+    public boolean emptyCell(){//NOT DONE
 	
+	return false;
     }
     
 }
