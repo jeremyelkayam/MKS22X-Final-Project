@@ -20,7 +20,7 @@ A spreadsheet program not at all based on Microsoft Excel
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 #### 5/28
 - Jeremy: Added methods to convert between base-26 numbers and base-10 numbers.
-- Began working on functions - started sum, did not finish
+- Began working on functions - started sum, did not finish.
 #### 5/26
 - Jeremy: Updated readme, added setData(number) method in Cell class
 - added new Cell constructor for empty cell
