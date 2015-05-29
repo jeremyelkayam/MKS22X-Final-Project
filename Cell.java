@@ -7,9 +7,9 @@
 public class Cell{
     double data;//store all numbers internally as doubles since it can only store numbers and strings
     boolean containsNumber;//whether or not we have a number
-    String str; //data in string form
+    String str; //displayed data
     boolean emptyCell;
-    boolean doesMath;
+    boolean doesMath;//maybe MathCell should be a
     Sheet sheet;
     public Cell(Sheet t,double d){
 	setData(d);
@@ -52,16 +52,16 @@ public class Cell{
         double result=0;
 	if(s.charAt(0)=='='){//this is where the ma(th)gic happens
 	    if(s.substring(1,5).equals("SUM(")){
-		int z=5;
 		if(s.indexOf(")")!=-1){
-		    int dex=0;
-		    while(dex<s.length()){
-			dex=s.indexOf(",");
-			
+		    String work=s.substring(5,s.indexOf(")"));
+		    String[]nums=work.split(",");
+		    for(String z : nums){
+			result+=Double.valueOf(z);//This throws an exception if you do SUM() of any non-numbers!!!
 		    }
 		}
 	    }
 	    data=result;
+	    str=String.valueOf(data);
 	    
 	}else{
 	    str=s;
