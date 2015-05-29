@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.*;
 import javax.swing.text.*;
 import javax.swing.border.*;
 import java.awt.event.*;
@@ -124,10 +125,15 @@ public class Interface extends JFrame{
     }
 
     public void createTable(){
-	JTable table = new JTable(100,26);
-	
-	JScrollPane scrollPane = new JScrollPane(table);
-	add(scrollPane);
+	Integer[] col = new Integer[26];
+	for(int i=0;i<col.length;i++){
+	    col[i] = i+1;
+	}
+
+	DefaultTableModel model = new DefaultTableModel(100,col.length);
+
+	JTable table = new JTable(model);
+
     }
     public static void main(String[]args){
 	Interface blah = new Interface();
