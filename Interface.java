@@ -113,6 +113,18 @@ public class Interface extends JFrame{
 
 	setJMenuBar(menuBar);
     }
+    public static String getAlpha(int num) {//This method changes a base-10 integer to an alphabetic base-26 integer. A is 1, B is 2, AB is 28, etc.
+	String result = "";
+	while (num > 0) { //OF NOTE: getAlpha(0) RETURNS AN EMPTY STRING.
+	    num--; // 1 => a, not 0 => a
+	    int remainder = num % 26;
+	    char digit = (char) (remainder + 65);
+	    result = digit + result;
+	    num = (num - remainder) / 26;
+	}
+	
+	return result;
+    }
     public static void main(String[]args){
 	Interface blah = new Interface();
 	blah.setVisible(true);
