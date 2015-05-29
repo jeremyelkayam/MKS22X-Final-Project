@@ -6,7 +6,6 @@ import java.awt.event.*;
 
 public class Interface extends JFrame{
     private Container pane;
-    private JTextField text;
     private String title;
     public Interface(){
 	title="Stuycrosoft XL";
@@ -16,17 +15,14 @@ public class Interface extends JFrame{
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	pane=this.getContentPane();
 	pane.setLayout(new GridLayout(20,5));
-	text = new JTextField();
-	//Feel free to delete the following code, it's just me trying out stuff
-	//added all of the text boxes
-	pane.add(text);
-	pane.add(new JTextField());
-	pane.add(new JTextField());
-	for(int z=0;z<301;z++){
-	    pane.add(new JTextField());
-	}
+	
+	createMenu();
+	createTable();
 
-	//adding menu bar
+    }
+
+    public void createMenu(){
+       	//adding menu bar
 	JMenuBar menuBar;
 	JMenu fileMenu, editMenu;
 	JMenuItem menuItem;
@@ -113,6 +109,7 @@ public class Interface extends JFrame{
 
 	setJMenuBar(menuBar);
     }
+
     public static String numberToString(int num) {//This method changes a base-10 integer to an alphabetic base-26 integer. A is 1, B is 2, AB is 28, etc.
 	String result = "";
 	while (num > 0) { //OF NOTE: getAlpha(0) RETURNS AN EMPTY STRING.
@@ -124,6 +121,13 @@ public class Interface extends JFrame{
 	}
 	
 	return result;
+    }
+
+    public void createTable(){
+	JTable table = new JTable(100,26);
+	
+	JScrollPane scrollPane = new JScrollPane(table);
+	add(scrollPane);
     }
     public static void main(String[]args){
 	Interface blah = new Interface();
