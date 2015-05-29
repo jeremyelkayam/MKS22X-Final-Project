@@ -12,14 +12,14 @@ public class Cell{
     boolean doesMath;
     Sheet sheet;
     public Cell(Sheet t,double d){
-	data=d;
+	setData(d);
 	str=String.valueOf(d);
 	containsNumber=true;
 	emptyCell=false;
 	sheet=t;
     }
     public Cell(Sheet t,String s){
-	str=s;
+	setData(s);
 	containsNumber=false;
 	emptyCell=s.equals("");
 	sheet=t;
@@ -49,13 +49,28 @@ public class Cell{
 	containsNumber=true;
     }
     public void setData(String s){
-	str=s;
-	containsNumber=false;
-	emptyCell=s.equals("");
+        double result=0;
+	if(s.charAt(0)=='='){//this is where the ma(th)gic happens
+	    if(s.substring(1,5).equals("SUM(")){
+		int z=5;
+		if(s.indexOf(")")!=-1){
+		    int dex=0;
+		    while(dex<s.length()){
+			dex=s.indexOf(",");
+			
+		    }
+		}
+	    }
+	    data=result;
+	    
+	}else{
+	    str=s;
+	    containsNumber=false;
+	    emptyCell=s.equals("");
+	}
     }
-    public boolean emptyCell(){//NOT DONE
-	
-	return false;
+    public boolean emptyCell(){
+	return emptyCell;
     }
     
 }
