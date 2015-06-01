@@ -20,6 +20,7 @@ A spreadsheet program not at all based on Microsoft Excel
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 #### 6/1
 - Jeremy: Added temp interface without swing because I have no idea how swing works
+- Can put data in cells (but not functions) & enlarge the spreadsheet horizontally or vertically
 #### 5/31
 - Jeremy: Added GetCell() methods to Sheet class for different formatting of cell location
 #### 5/29
@@ -38,3 +39,7 @@ A spreadsheet program not at all based on Microsoft Excel
 
 ### Stable Versions
 Due 6/1, 6/8, 6/15
+
+#### Release 6/1/2015
+##### Instructions:
+Switch to branch "6/1" and compile/run TempInterface.java
