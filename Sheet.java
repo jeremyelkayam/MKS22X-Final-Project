@@ -2,7 +2,13 @@ import java.util.*;
 public class Sheet{
     Cell[][]sheet;
     public Sheet(){
-	sheet=new Cell[20][20];
+	this(20,20);
+    }
+    public Sheet(int rows,int cols){
+	sheet=new Cell[rows][cols];
+	initialize();
+    }
+    public void initialize(){
 	for(int r=0;r<sheet.length;r++){
 	    for(int c=0;c<sheet.length;c++){
 		sheet[r][c]=new Cell(this);
@@ -55,13 +61,6 @@ public class Sheet{
 	}
 	sheet=newSheet;
     }
-    public String toString(){
-	String result="";
-	for(Cell[]z : sheet){
-	    result+=Arrays.toString(z)+"\n";
-	}
-	return result;
-    }
     public static int stringToNumber(String str) {//This converts a string created by stringToNumber() back into number form.
 	char[] ls = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 	Map<Character, Integer> m = new HashMap<Character, Integer>();
@@ -76,6 +75,16 @@ public class Sheet{
 	    mul *= ls.length;
 	}
 	return i;
+    }
+    public String toString(){
+	String result="";
+	for(int z=0;z<sheet[0].length;z++){
+	    if(z==0)
+		result+="\t";
+	    else
+		result+=Interface.numberToString(z)+"\t";
+	}
+	return result;
     }
 }
 
