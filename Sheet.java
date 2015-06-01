@@ -19,7 +19,8 @@ public class Sheet{
 	return sheet[row][col];
     }
     public Cell getCell(int row, String col){
-	return sheet[row][stringToNumber(col)];
+	return sheet[row][stringToNumber(col)-1];
+	//remember that "A" refers to column 0
     }
     /*
       parses location in the alphanumeric form "A1, B6, AGC833, etc."
@@ -36,7 +37,8 @@ public class Sheet{
 	//System.out.println(numIndex);
 	String alpha=location.substring(0,numIndex);
 	String numbers=location.substring(numIndex);
-	return sheet[Integer.valueOf(numbers)][stringToNumber(alpha)];
+	return sheet[Integer.valueOf(numbers)-1][stringToNumber(alpha)-1];
+	//"A1" refers to sheet[0][0]
     }
     public void setData(int row, int col, double value){
 	getCell(row,col).setData(value);
@@ -47,6 +49,16 @@ public class Sheet{
     public void setData(String location,double value){
 	getCell(location).setData(value);
     }
+    public void setData(int row, int col, String value){
+	getCell(row,col).setData(value);
+    }
+    public void setData(int row,String col,String value){
+	getCell(row,col).setData(value);
+    }
+    public void setData(String location,String value){
+	getCell(location).setData(value);
+    }
+
     private void enlarge(boolean sideways){
 	Cell[][]newSheet;
 	if(sideways){//expand sideways
@@ -84,7 +96,28 @@ public class Sheet{
 	    else
 		result+=Interface.numberToString(z)+"\t";
 	}
+	result+="\n";
+	for(int r=0;r<sheet.length;r++){
+	    result+=(r+1)+"\t";
+	    for(Cell c : sheet[r]){
+		result+=c+"\t";
+	    }
+	    result+="\n";
+	}
 	return result;
+    }
+    public boolean hasCell(String cellCor){
+	int numIndex;
+	int z=0;
+	while(!Character.isDigit(cellCor.charAt(z))){
+	    z++;
+	}
+	numIndex=z;
+	String alpha=cellCor.substring(0,numIndex);
+	String numbers=cellCor.substring(numIndex);
+	int row=Integer.valueOf(numbers)-1;
+	int col=stringToNumber(alpha)-1;
+	return (row<sheet.length) && (col<sheet[0].length);
     }
 }
 
