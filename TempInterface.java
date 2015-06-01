@@ -32,7 +32,19 @@ public class TempInterface{
 		keepGoing=false;
 		break;
 	    case "enlarge":
-		System.out.println("Enlarge horizontally or vertically? (H/V)");
+		while(true){
+		    System.out.println("Enlarge horizontally or vertically? (H/V)");
+		    String hv=getSomething();
+		    if(hv.equalsIgnoreCase("h")){
+			sheet.enlarge(true);
+			break;
+		    }else if(hv.equalsIgnoreCase("v")){
+			sheet.enlarge(false);
+			break;
+		    }else{
+			System.out.println("Please type in either the letter h or v");
+		    }
+		}
 		break;
 	    default:
 		System.out.println("I don't understand.");

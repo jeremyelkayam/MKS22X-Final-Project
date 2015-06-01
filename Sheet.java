@@ -59,16 +59,20 @@ public class Sheet{
 	getCell(location).setData(value);
     }
 
-    private void enlarge(boolean sideways){
+    public void enlarge(boolean sideways){
 	Cell[][]newSheet;
 	if(sideways){//expand sideways
 	    newSheet=new Cell[sheet.length][sheet[0].length*2];
 	}else{//expand vertically
 	    newSheet=new Cell[sheet.length*2][sheet[0].length];
 	}
-	for(int r=0;r<sheet.length;r++){
-	    for(int c=0;c<sheet[0].length;c++){
+	for(int r=0;r<newSheet.length;r++){
+	    for(int c=0;c<newSheet[0].length;c++){
+		if(r<sheet.length && c<sheet[0].length){
 		    newSheet[r][c]=sheet[r][c];
+		}else{
+		    newSheet[r][c]=new Cell(this);
+		}
 	    }
 	}
 	sheet=newSheet;
