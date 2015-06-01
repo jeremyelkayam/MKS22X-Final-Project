@@ -18,6 +18,10 @@ A spreadsheet program not at all based on Microsoft Excel
 
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
+#### 6/1
+- Jeremy: Added temp interface without swing because I have no idea how swing works
+#### 5/31
+- Jeremy: Added GetCell() methods to Sheet class for different formatting of cell location
 #### 5/29
 - Jeremy: Finished =SUM(), currently works on numbers only - cannot access other cells
 

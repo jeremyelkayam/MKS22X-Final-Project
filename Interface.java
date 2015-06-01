@@ -15,7 +15,7 @@ public class Interface extends JFrame{
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	pane=this.getContentPane();
-	//pane.setLayout(new GridLayout(20,5));
+	pane.setLayout(new GridLayout(20,5));
 	
 	createMenu();
 	createTable();
@@ -130,13 +130,10 @@ public class Interface extends JFrame{
 	    col[i] = i+1;
 	}
 
-	DefaultTableModel model = new DefaultTableModel(10,col.length);
+	DefaultTableModel model = new DefaultTableModel(100,col.length);
 
 	JTable table = new JTable(model);
-	//throwing random crap at the wall and seeing what sticks
-	getContentPane().add(table);
-	
-	
+
     }
     public static void main(String[]args){
 	Interface blah = new Interface();
