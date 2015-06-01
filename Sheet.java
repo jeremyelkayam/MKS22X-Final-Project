@@ -12,8 +12,34 @@ public class Sheet{
     public Cell getCell(int row, int col){
 	return sheet[row][col];
     }
+    public Cell getCell(int row, String col){
+	return sheet[row][stringToNumber(col)];
+    }
+    /*
+      parses location in the alphanumeric form "A1, B6, AGC833, etc."
+      String of letters denotes column
+      Number denotes row
+    */
+    public Cell getCell(String location){
+	int numIndex;
+	int z=0;
+	while(!Character.isDigit(location.charAt(z))){
+	    z++;
+	}
+	numIndex=z;//regex would help so much but I don't know how to use it :(
+	//System.out.println(numIndex);
+	String alpha=location.substring(0,numIndex);
+	String numbers=location.substring(numIndex);
+	return sheet[Integer.valueOf(numbers)][stringToNumber(alpha)];
+    }
     public void setData(int row, int col, double value){
-	sheet[row][col].setData(value);
+	getCell(row,col).setData(value);
+    }
+    public void setData(int row,String col,double value){
+	getCell(row,col).setData(value);
+    }
+    public void setData(String location,double value){
+	getCell(location).setData(value);
     }
     private void enlarge(boolean sideways){
 	Cell[][]newSheet;
