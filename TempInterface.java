@@ -12,8 +12,14 @@ public class TempInterface{
 	    String input=getSomething();
 	    switch(input.toLowerCase()){
 	    case "set":
+		String cor;
+		while(true){
 		System.out.println("Which cell to set?");
-		String cor=getSomething().toUpperCase();
+		cor=getSomething().toUpperCase();
+		if(sheet.hasCell(cor))
+		    break;
+		System.out.println("That is not a valid coordinate.");
+		}
 		System.out.println("What data should be put in the cell?");
 		String data=getSomething();
 		try{
