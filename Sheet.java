@@ -10,6 +10,37 @@ public class Sheet{
 	initialize();
     }
     /*
+      constructs a Sheet based on the .csv file given.
+     */
+    public Sheet(String filename)throws FileNotFoundException,IOException{
+	BufferedReader br=new BufferedReader(new FileReader(filename));
+	ArrayList<Cell[]>list=new ArrayList<Cell[]>();
+	while(br.ready()){
+	    String line=br.readLine();
+	    String[]lol=line.split(",");
+	    Cell[]arr=new Cell[lol.length];
+	    for(int i=0;i<lol.length;i++){
+		String z=lol[i];
+		if(z.length()>0 && z.charAt(0)=='"'){
+		    z=z.substring(1,z.length()-1);
+		    arr[i]=new Cell(this,z);
+		}else{
+		    try{
+			double d=Double.valueOf(z);
+			arr[i]=new Cell(this,d);
+		    }catch(NumberFormatException nfe){
+			arr[i]=new Cell(this,z);
+		    }
+		}
+	    }
+	    list.add(arr);
+	}
+	sheet=new Cell[list.size()][];
+	for(int z=0;z<list.size();z++){
+	    sheet[z]=list.get(z);
+	}
+    }
+    /*
       Initializes every cell in the sheet to an empty cell
      */
     public void initialize(){
@@ -112,7 +143,7 @@ public class Sheet{
      */
     public String toString(){
 	String result="";
-	for(int z=0;z<sheet[0].length;z++){
+	for(int z=0;z<=sheet[0].length;z++){
 	    if(z==0)
 		result+="\t";
 	    else

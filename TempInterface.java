@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class TempInterface{
     static Sheet sheet=new Sheet(5,5);
     public static void main(String[]args){
@@ -13,6 +14,7 @@ public class TempInterface{
 			       +"\n\"set\" (sets cell data)"
 			       +"\n\"enlarge\" (enlarges sheet)\n"
 			       +"\"save\" (saves sheet as .csv file)\n"
+			       +"\"load\" (loads sheet from .csv file)\n"
 			       +"\"quit\" (exits program)");
 	    String input=getSomething();
 	    switch(input.toLowerCase()){
@@ -55,7 +57,28 @@ public class TempInterface{
 		System.out.println("Please enter a filename");
 		String name=getSomething();
 		sheet.save(name);
-		System.out.println("File saved as \""+name+".csv\".");
+		if(name.length()<4 ||
+		   !(name.substring(name.length()-4,name.length()).equalsIgnoreCase(".csv"))){
+		    name+=".csv";
+		}
+		System.out.println("File saved as \""+name+"\".");
+		break;
+	    case "load":
+		while(true){
+		    System.out.println("Please enter a filename");
+		    String fname=getSomething();
+		    try{
+			try{
+			    sheet=new Sheet(fname);
+			    break;
+			}catch(FileNotFoundException fnfe){
+			    System.out.println("File not found.");
+			}
+		    }catch(IOException ioe){
+			System.out.println("Error while reading file");
+		    }
+		}
+		System.out.println("File loaded.");
 		break;
 	    default:
 		System.out.println("I don't understand.");

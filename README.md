@@ -18,6 +18,8 @@ A spreadsheet program not at all based on Microsoft Excel
 
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
+#### 6/2
+- Jeremy: Added ability to load sheet from csv file
 #### 6/1
 - Jeremy: Added temp interface without swing because I have no idea how swing works
 - Can put data in cells (but not functions) & enlarge the spreadsheet horizontally or vertically

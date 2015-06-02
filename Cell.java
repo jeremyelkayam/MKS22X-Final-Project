@@ -49,8 +49,9 @@ public class Cell{
 	containsNumber=true;
     }
     public void setData(String s){
-	    double result=0;
-	    if(s.charAt(0)=='='){//this is where the ma(th)gic happens
+	double result=0;
+	if(s.length()>0 && s.charAt(0)=='='){
+		//this is where the ma(th)gic happens
 		if(s.substring(1,5).equals("SUM(")){
 		    if(s.indexOf(")")!=-1){
 			String work=s.substring(5,s.indexOf(")"));
@@ -63,11 +64,12 @@ public class Cell{
 		data=result;
 		str=String.valueOf(data);
 		containsNumber=true;
-	    }else{
-		str=s;
-		containsNumber=false;
-		emptyCell=s.equals("");
-	    }
+	    
+	}else{
+	    str=s;
+	    containsNumber=false;
+	    emptyCell=s.equals("");
+	}
     }
     public boolean emptyCell(){
 	return emptyCell;
