@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class Sheet{
     Cell[][]sheet;
     public Sheet(){
@@ -8,6 +9,9 @@ public class Sheet{
 	sheet=new Cell[rows][cols];
 	initialize();
     }
+    /*
+      Initializes every cell in the sheet to an empty cell
+     */
     public void initialize(){
 	for(int r=0;r<sheet.length;r++){
 	    for(int c=0;c<sheet.length;c++){
@@ -15,9 +19,15 @@ public class Sheet{
 	    }
 	}
     }
+    /*
+      Finds the cell at row,col
+     */
     public Cell getCell(int row, int col){
 	return sheet[row][col];
     }
+    /*
+      finds the cell at row,col given col in string form
+     */
     public Cell getCell(int row, String col){
 	return sheet[row][stringToNumber(col)-1];
 	//remember that "A" refers to column 0
@@ -39,7 +49,10 @@ public class Sheet{
 	String numbers=location.substring(numIndex);
 	return sheet[Integer.valueOf(numbers)-1][stringToNumber(alpha)-1];
 	//"A1" refers to sheet[0][0]
-    }
+    }    
+    /*
+      Sets data to number or string blah blah blah
+     */
     public void setData(int row, int col, double value){
 	getCell(row,col).setData(value);
     }
@@ -57,8 +70,10 @@ public class Sheet{
     }
     public void setData(String location,String value){
 	getCell(location).setData(value);
-    }
-
+    }    
+    /*
+      Doubles the size of the sheet either sideways or vertically
+     */
     public void enlarge(boolean sideways){
 	Cell[][]newSheet;
 	if(sideways){//expand sideways
@@ -92,6 +107,9 @@ public class Sheet{
 	}
 	return i;
     }
+    /*
+      The usual toString......
+     */
     public String toString(){
 	String result="";
 	for(int z=0;z<sheet[0].length;z++){
@@ -110,6 +128,9 @@ public class Sheet{
 	}
 	return result;
     }
+    /*
+      Checks if the array has a cell at the given coordinate
+     */
     public boolean hasCell(String cellCor){
 	int numIndex;
 	int z=0;
@@ -123,5 +144,36 @@ public class Sheet{
 	int col=stringToNumber(alpha)-1;
 	return (row<sheet.length) && (col<sheet[0].length);
     }
+    /*
+      Returns a string representing the sheet in CSV form
+      Might need some work but currently it's working ok.
+     */
+    private String toCSV(){
+	String result="";
+	for(Cell[]row : sheet){
+	    for(Cell z : row){
+		if(z.containsNumber()){
+		    result+=z.getData();
+		}else{
+		    result+="\""+z+"\"";
+		}
+		result+=",";
+	    }
+	    result+="\n";
+	}
+	return result;
+    }
+    public void save(String filename){
+	if(filename.length()<4 || !(filename.substring(filename.length()-4,filename.length()).equalsIgnoreCase(".csv"))){
+	    filename+=".csv";
+	}
+	
+	try{
+	    FileWriter fw=new FileWriter(filename);
+	    fw.write(toCSV());
+	    fw.close();
+	}catch(IOException ioe){
+	    System.out.println("Unable to write file.");
+	}
+    }
 }
-

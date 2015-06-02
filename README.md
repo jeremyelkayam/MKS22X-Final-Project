@@ -21,6 +21,7 @@ A spreadsheet program not at all based on Microsoft Excel
 #### 6/1
 - Jeremy: Added temp interface without swing because I have no idea how swing works
 - Can put data in cells (but not functions) & enlarge the spreadsheet horizontally or vertically
+- Added option to save spreadsheet as .csv file (no support for loading files yet)
 #### 5/31
 - Jeremy: Added GetCell() methods to Sheet class for different formatting of cell location
 #### 5/29

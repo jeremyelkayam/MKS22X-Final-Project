@@ -8,7 +8,12 @@ public class TempInterface{
 	//System.out.println(sheet);
 	while(keepGoing){
 	    System.out.println("Sheet:\n"+sheet);
-	    System.out.println("What would you like to do?\nOptions are:\n\"set\" (sets cell data)\n\"enlarge\" (enlarges sheet)\n\"quit\" (exits program)");
+	    System.out.println("What would you like to do?\n"
+			       +"Options are:"
+			       +"\n\"set\" (sets cell data)"
+			       +"\n\"enlarge\" (enlarges sheet)\n"
+			       +"\"save\" (saves sheet as .csv file)\n"
+			       +"\"quit\" (exits program)");
 	    String input=getSomething();
 	    switch(input.toLowerCase()){
 	    case "set":
@@ -45,6 +50,12 @@ public class TempInterface{
 			System.out.println("Please type in either the letter h or v");
 		    }
 		}
+		break;
+	    case "save":
+		System.out.println("Please enter a filename");
+		String name=getSomething();
+		sheet.save(name);
+		System.out.println("File saved as \""+name+".csv\".");
 		break;
 	    default:
 		System.out.println("I don't understand.");
