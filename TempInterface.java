@@ -12,7 +12,7 @@ public class TempInterface{
 	    System.out.println("What would you like to do?\n"
 			       +"Options are:"
 			       +"\n\"set\" (sets cell data)"
-			       +"\n\"enlarge\" (enlarges sheet)\n"
+			       //+"\n\"enlarge\" (enlarges sheet)\n"
 			       +"\"save\" (saves sheet as .csv file)\n"
 			       +"\"load\" (loads sheet from .csv file)\n"
 			       +"\"quit\" (exits program)");
@@ -38,7 +38,7 @@ public class TempInterface{
 	    case "quit":
 		keepGoing=false;
 		break;
-	    case "enlarge":
+		/*case "enlarge":
 		while(true){
 		    System.out.println("Enlarge horizontally or vertically? (H/V)");
 		    String hv=getSomething();
@@ -52,7 +52,7 @@ public class TempInterface{
 			System.out.println("Please type in either the letter h or v");
 		    }
 		}
-		break;
+		break;*/
 	    case "save":
 		System.out.println("Please enter a filename");
 		String name=getSomething();

@@ -11,6 +11,12 @@ public class Sheet{
     }
     /*
       constructs a Sheet based on the .csv file given.
+      PRECONDITIONS
+      Cells are split by commas (no leading commas, no trailing commas)
+      Rows are split by newlines
+      Strings may be enclosed by quotes but don't have to be (it will run more slowly if they aren't)
+      OF NOTE: if a " begins a cell but does not end it, then this breaks (it does not convert the text to a cell properly)
+      
      */
     public Sheet(String filename)throws FileNotFoundException,IOException{
 	BufferedReader br=new BufferedReader(new FileReader(filename));
@@ -84,6 +90,7 @@ public class Sheet{
     /*
       Sets data to number or string blah blah blah
      */
+    /*
     public void setData(int row, int col, double value){
 	getCell(row,col).setData(value);
     }
@@ -99,19 +106,43 @@ public class Sheet{
     public void setData(int row,String col,String value){
 	getCell(row,col).setData(value);
     }
+    */
     public void setData(String location,String value){
-	getCell(location).setData(value);
-    }    
-    /*
-      Doubles the size of the sheet either sideways or vertically
-     */
-    public void enlarge(boolean sideways){
-	Cell[][]newSheet;
-	if(sideways){//expand sideways
-	    newSheet=new Cell[sheet.length][sheet[0].length*2];
-	}else{//expand vertically
-	    newSheet=new Cell[sheet.length*2][sheet[0].length];
+	//TODO czech if the user is setting the cell to an empty string. If user is,then automatically ensmallen the sheet.
+	if(!hasCell(location)){
+	    int row=toIndex(location)[0];
+	    int col=toIndex(location)[1];
+	    if(row>=sheet.length && col>=sheet[0].length){//expand length and height to accomodate cell
+		resize(row,col);
+	    }else if(row>=sheet.length){//expand length to acco
+		
+	    }else if(col>=sheet[0].length){
+		
+	    }//otherwise we don't need to worry because it has that cell
 	}
+	getCell(location).setData(value);
+    }
+    public static int[]toIndex(String cellCor){
+	    int numIndex;
+	    int z=0;
+	    while(!Character.isDigit(cellCor.charAt(z))){
+		z++;
+	    }
+	    numIndex=z;
+	    String alpha=cellCor.substring(0,numIndex);
+	    String numbers=cellCor.substring(numIndex);
+	    int row=Integer.valueOf(numbers)-1;
+	    int col=stringToNumber(alpha)-1;
+	    int[]result={row,col};
+	    return result;
+    }
+    /*
+      Resizes sheet to given size.
+      If the new size is smaller than the existing sheet, values outside the new sheet are deleted.
+      If the new size is larger than the existing sheet, new empty cells are added
+     */
+    public void resize(int rows,int cols){
+	Cell[][]newSheet=new Cell[rows][cols];
 	for(int r=0;r<newSheet.length;r++){
 	    for(int c=0;c<newSheet[0].length;c++){
 		if(r<sheet.length && c<sheet[0].length){
@@ -163,17 +194,8 @@ public class Sheet{
       Checks if the array has a cell at the given coordinate
      */
     public boolean hasCell(String cellCor){
-	int numIndex;
-	int z=0;
-	while(!Character.isDigit(cellCor.charAt(z))){
-	    z++;
-	}
-	numIndex=z;
-	String alpha=cellCor.substring(0,numIndex);
-	String numbers=cellCor.substring(numIndex);
-	int row=Integer.valueOf(numbers)-1;
-	int col=stringToNumber(alpha)-1;
-	return (row<sheet.length) && (col<sheet[0].length);
+	int[]lol=toIndex(cellCor);
+	return (lol[0]<sheet.length) && (lol[1]<sheet[0].length);
     }
     /*
       Returns a string representing the sheet in CSV form
