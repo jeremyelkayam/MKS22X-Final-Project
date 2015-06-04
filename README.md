@@ -18,6 +18,8 @@ A spreadsheet program not at all based on Microsoft Excel
 
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
+#### 6/4
+- Jeremy: setCell() now enlarges the sheet when you try to set a cell that the sheet does not contain. 
 #### 6/3
 - Everyone went to jprom & didn't do anything school-related
 #### 6/2
