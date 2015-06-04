@@ -97,30 +97,38 @@ public class Sheet{
     public void setData(int row,String col,double value){
 	getCell(row,col).setData(value);
     }
-    public void setData(String location,double value){
-	getCell(location).setData(value);
-    }
     public void setData(int row, int col, String value){
 	getCell(row,col).setData(value);
     }
+    
     public void setData(int row,String col,String value){
 	getCell(row,col).setData(value);
     }
     */
-    public void setData(String location,String value){
+   public void setData(String location,String value){
 	//TODO czech if the user is setting the cell to an empty string. If user is,then automatically ensmallen the sheet.
+	getCellResize(location).setData(value);
+    }
+    public void setData(String location,double value){
+	getCellResize(location).setData(value);
+    }
+    /*
+      Gets cell at location. If this sheet does not contain a cell at location,
+      the sheet is automatically resized to include that cell.
+     */
+    public Cell getCellResize(String location){
 	if(!hasCell(location)){
-	    int row=toIndex(location)[0];
-	    int col=toIndex(location)[1];
-	    if(row>=sheet.length && col>=sheet[0].length){//expand length and height to accomodate cell
+	    int row=toIndex(location)[0]+1;
+	    int col=toIndex(location)[1]+1;
+	    if(row>sheet.length && col>sheet[0].length){//expand length and height to accomodate cell
 		resize(row,col);
-	    }else if(row>=sheet.length){//expand length to acco
+	    }else if(row>sheet.length){//expand length to acco
 		resize(row,sheet[0].length);
-	    }else if(col>=sheet[0].length){
-		resize(sheet.length,row);
+	    }else if(col>sheet[0].length){
+		resize(sheet.length,col);
 	    }//otherwise we don't need to worry because it has that cell
 	}
-	getCell(location).setData(value);
+	return getCell(location);
     }
     public static int[]toIndex(String cellCor){
 	    int numIndex;

@@ -10,23 +10,18 @@ public class TempInterface{
 	while(keepGoing){
 	    System.out.println("Sheet:\n"+sheet);
 	    System.out.println("What would you like to do?\n"
-			       +"Options are:"
-			       +"\n\"set\" (sets cell data)"
-			       //+"\n\"enlarge\" (enlarges sheet)\n"
+			       +"Options are:\n"
+			       +"\"set\" (sets cell data)\n"
+			       //+"\"enlarge\" (enlarges sheet)\n"
 			       +"\"save\" (saves sheet as .csv file)\n"
 			       +"\"load\" (loads sheet from .csv file)\n"
 			       +"\"quit\" (exits program)");
 	    String input=getSomething();
 	    switch(input.toLowerCase()){
 	    case "set":
-		String cor;
-		while(true){
+		String cor;		
 		System.out.println("Which cell to set?");
 		cor=getSomething().toUpperCase();
-		if(sheet.hasCell(cor))
-		    break;
-		System.out.println("That is not a valid coordinate.");
-		}
 		System.out.println("What data should be put in the cell?");
 		String data=getSomething();
 		try{
