@@ -115,9 +115,9 @@ public class Sheet{
 	    if(row>=sheet.length && col>=sheet[0].length){//expand length and height to accomodate cell
 		resize(row,col);
 	    }else if(row>=sheet.length){//expand length to acco
-		
+		resize(row,sheet[0].length);
 	    }else if(col>=sheet[0].length){
-		
+		resize(sheet.length,row);
 	    }//otherwise we don't need to worry because it has that cell
 	}
 	getCell(location).setData(value);
