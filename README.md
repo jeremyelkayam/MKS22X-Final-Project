@@ -18,6 +18,8 @@ A spreadsheet program not at all based on Microsoft Excel
 
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
+#### 6/3
+- Everyone went to jprom & didn't do anything school-related
 #### 6/2
 - Jeremy: Added ability to load sheet from csv file
 #### 6/1
