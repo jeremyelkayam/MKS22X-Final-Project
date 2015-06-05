@@ -8,26 +8,22 @@ public class Cell{
     double data;//store all numbers internally as doubles since it can only store numbers and strings
     boolean containsNumber;//whether or not we have a number
     String str; //displayed data 
-    boolean emptyCell;
     boolean doesMath;//maybe MathCell should be a separate class.....
     Sheet sheet;
     public Cell(Sheet t,double d){
 	setData(d);
 	str=String.valueOf(d);
 	containsNumber=true;
-	emptyCell=false;
 	sheet=t;
     }
     public Cell(Sheet t,String s){
 	setData(s);
 	containsNumber=false;
-	emptyCell=s.equals("");
 	sheet=t;
     }
     public Cell(Sheet t){
 	str="";
 	containsNumber=false;
-	emptyCell=true;
 	sheet=t;
     }
     public double getData() throws UnsupportedOperationException{
@@ -38,6 +34,8 @@ public class Cell{
 	}
     }
     public String toString(){
+	if(containsNumber)
+	    return String.valueOf(getData());
 	return str;
     }
     public boolean containsNumber(){
@@ -68,11 +66,7 @@ public class Cell{
 	}else{
 	    str=s;
 	    containsNumber=false;
-	    emptyCell=s.equals("");
 	}
-    }
-    public boolean emptyCell(){
-	return emptyCell;
     }
     
 }
