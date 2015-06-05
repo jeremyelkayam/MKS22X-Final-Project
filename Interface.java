@@ -126,11 +126,11 @@ public class Interface extends JFrame{
 
     public void createTable(){
 
-	JTable table = new JTable(0, 26);
-	
-
+	JTable table = new JTable(100, 26);
+	table.setRowHeight(20);
 	JScrollPane scrollPane = new JScrollPane(table);
-	table.setFillsViewportHeight(true);
+
+       	table.setFillsViewportHeight(true);
 
 	getContentPane().add(scrollPane);
 
