@@ -1,5 +1,5 @@
 # MKS22X Final Project
-**_Jeremy Elkayam & Tina Zhang_**
+**_The Hackstreet ~~Boys~~: Jeremy Elkayam & Tina Zhang_**
 
 ### "Stuycrosoft XL"
 A spreadsheet program not at all based on Microsoft Excel
@@ -24,6 +24,7 @@ A spreadsheet program not at all based on Microsoft Excel
 #### 6/5
 - Jeremy: setData() now ensmallens the sheet if you set it to an empty string and there is no data in the other sheets.
 - ~~Didn't test anything in class because apparently java 6 doesn't do strings with the switch statement. (these machines SUCK)~~ It is now tested and WORKING GREAT!!
+- This feature doesn't really do much for the user - it's really just there to make the .csv files as small as possible.
 
 #### 6/4
 - Jeremy: setData() now embiggens the sheet when you try to set a cell that the sheet does not contain. 
