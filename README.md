@@ -1,4 +1,6 @@
 # MKS22X Final Project
+**_Jeremy Elkayam & Tina Zhang_**
+
 ### "Stuycrosoft XL"
 A spreadsheet program not at all based on Microsoft Excel
 
