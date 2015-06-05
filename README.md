@@ -18,18 +18,24 @@ A spreadsheet program not at all based on Microsoft Excel
 
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
+
 #### 6/4
 - Jeremy: setCell() now enlarges the sheet when you try to set a cell that the sheet does not contain. 
+
 #### 6/3
 - Everyone went to jprom & didn't do anything school-related
+
 #### 6/2
 - Jeremy: Added ability to load sheet from csv file
+
 #### 6/1
 - Jeremy: Added temp interface without swing because I have no idea how swing works
 - Can put data in cells (but not functions) & enlarge the spreadsheet horizontally or vertically
 - Added option to save spreadsheet as .csv file (no support for loading files yet)
+
 #### 5/31
 - Jeremy: Added GetCell() methods to Sheet class for different formatting of cell location
+
 #### 5/29
 - Jeremy: Finished =SUM(), currently works on numbers only - cannot access other cells
 
