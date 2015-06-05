@@ -7,9 +7,9 @@
 public class Cell{
     double data;//store all numbers internally as doubles since it can only store numbers and strings
     boolean containsNumber;//whether or not we have a number
-    String str; //displayed data
+    String str; //displayed data 
     boolean emptyCell;
-    boolean doesMath;//maybe MathCell should be a
+    boolean doesMath;//maybe MathCell should be a separate class.....
     Sheet sheet;
     public Cell(Sheet t,double d){
 	setData(d);
@@ -55,7 +55,7 @@ public class Cell{
 		if(s.substring(1,5).equals("SUM(")){
 		    if(s.indexOf(")")!=-1){
 			String work=s.substring(5,s.indexOf(")"));
-			String[]nums=work.split(",");
+			String[]nums=work.split(";");
 			for(String z : nums){
 			    result+=Double.valueOf(z);//This throws an exception if you do SUM() of any non-numbers!!!
 			}
