@@ -125,14 +125,14 @@ public class Interface extends JFrame{
     }
 
     public void createTable(){
-	Integer[] col = new Integer[26];
-	for(int i=0;i<col.length;i++){
-	    col[i] = i+1;
-	}
 
-	DefaultTableModel model = new DefaultTableModel(100,col.length);
+	JTable table = new JTable(0, 26);
+	
 
-	JTable table = new JTable(model);
+	JScrollPane scrollPane = new JScrollPane(table);
+	table.setFillsViewportHeight(true);
+
+	getContentPane().add(scrollPane);
 
     }
     public static void main(String[]args){
