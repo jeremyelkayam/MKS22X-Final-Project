@@ -108,24 +108,29 @@ public class Sheet{
     public void setData(String location,String value){
 	//TODO czech if the user is setting the cell to an empty string. If user is,then automatically ensmallen the sheet.
 	if(value.equals("")){
+	    getCell(location).setData(value);
 	    int row=toIndex(location)[0];
 	    int col=toIndex(location)[1];
 	    int lastRow=0;
 	    int lastCol=0;
 	    for(int r=0;r<sheet.length;r++){
-		for(int c=0;c<sheet.length;c++){
-		    if(!sheet[r][c].toString().equals("") && !(r==row && c==col)){
+		for(int c=0;c<sheet[0].length;c++){
+		    System.out.println((r+1)+Interface.numberToString(c+1));
+		    if(!sheet[r][c].toString().equals("")){
+			System.out.println("ayy lmao");
 			if(r>lastRow)
-			    lastRow=row;
+			    lastRow=r;
 			if(c>lastCol)
-			    lastCol=col;
+			    lastCol=c;
+			System.out.println(lastRow+" "+lastCol);
 		    }
 		}
 	    }
+	    
 	    if(lastRow<row)
-		resize(lastRow,sheet[0].length);
+		resize(lastRow+1,sheet[0].length);
 	    if(lastCol<col)
-		resize(sheet.length,lastCol);	    
+		resize(sheet.length,lastCol+1);	    
 	}else{ 
 	    getCellResize(location).setData(value);
 	}

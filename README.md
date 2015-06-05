@@ -21,7 +21,7 @@ A spreadsheet program not at all based on Microsoft Excel
 
 #### 6/5
 - Jeremy: setData() now ensmallens the sheet if you set it to an empty string and there is no data in the other sheets.
-- Didn't test anything in class because apparently java 6 doesn't do strings with the switch statement. (these machines SUCK)
+- ~~Didn't test anything in class because apparently java 6 doesn't do strings with the switch statement. (these machines SUCK)~~ It is now tested and WORKING GREAT!!
 
 #### 6/4
 - Jeremy: setData() now embiggens the sheet when you try to set a cell that the sheet does not contain. 

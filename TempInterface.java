@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class TempInterface{
-    static Sheet sheet=new Sheet(5,5);
+    static Sheet sheet=new Sheet(1,1);
     public static void main(String[]args){
 	boolean keepGoing=true;
 	System.out.println("Welcome to Stuycrosoft XL!\n\n");
@@ -27,6 +27,8 @@ public class TempInterface{
 		try{
 		    sheet.setData(cor,Double.valueOf(data));
 		}catch(NumberFormatException nfe){
+		    if(data.equals("\"\""))
+			data="";//for testing purposes
 		    sheet.setData(cor,data);
 		}
 		break;
