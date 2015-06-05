@@ -89,27 +89,54 @@ public class Sheet{
     }    
     /*
       Sets data to number or string blah blah blah
-     */
-    /*
-    public void setData(int row, int col, double value){
-	getCell(row,col).setData(value);
-    }
-    public void setData(int row,String col,double value){
-	getCell(row,col).setData(value);
-    }
-    public void setData(int row, int col, String value){
-	getCell(row,col).setData(value);
-    }
-    
-    public void setData(int row,String col,String value){
-	getCell(row,col).setData(value);
-    }
     */
-   public void setData(String location,String value){
+    /*
+      public void setData(int row, int col, double value){
+      getCell(row,col).setData(value);
+      }
+      public void setData(int row,String col,double value){
+      getCell(row,col).setData(value);
+      }
+      public void setData(int row, int col, String value){
+      getCell(row,col).setData(value);
+      }
+      
+      public void setData(int row,String col,String value){
+      getCell(row,col).setData(value);
+      }
+    */
+    public void setData(String location,String value){
 	//TODO czech if the user is setting the cell to an empty string. If user is,then automatically ensmallen the sheet.
-	getCellResize(location).setData(value);
+	if(value.equals("")){
+	    getCell(location).setData(value);
+	    int row=toIndex(location)[0];
+	    int col=toIndex(location)[1];
+	    int lastRow=0;
+	    int lastCol=0;
+	    for(int r=0;r<sheet.length;r++){
+		for(int c=0;c<sheet[0].length;c++){
+		    System.out.println((r+1)+Interface.numberToString(c+1));
+		    if(!sheet[r][c].toString().equals("")){
+			System.out.println("ayy lmao");
+			if(r>lastRow)
+			    lastRow=r;
+			if(c>lastCol)
+			    lastCol=c;
+			System.out.println(lastRow+" "+lastCol);
+		    }
+		}
+	    }
+	    
+	    if(lastRow<row)
+		resize(lastRow+1,sheet[0].length);
+	    if(lastCol<col)
+		resize(sheet.length,lastCol+1);	    
+	}else{ 
+	    getCellResize(location).setData(value);
+	}
     }
     public void setData(String location,double value){
+	//don't need the empty cell clause here because any number (even 0) will fill a cell.
 	getCellResize(location).setData(value);
     }
     /*
