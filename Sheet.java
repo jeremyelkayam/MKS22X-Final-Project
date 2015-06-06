@@ -115,14 +115,14 @@ public class Sheet{
 	    int lastCol=0;
 	    for(int r=0;r<sheet.length;r++){
 		for(int c=0;c<sheet[0].length;c++){
-		    System.out.println((r+1)+Interface.numberToString(c+1));
+		    //System.out.println((r+1)+Interface.numberToString(c+1));
 		    if(!sheet[r][c].toString().equals("")){
-			System.out.println("ayy lmao");
+			//System.out.println("ayy lmao");
 			if(r>lastRow)
 			    lastRow=r;
 			if(c>lastCol)
 			    lastCol=c;
-			System.out.println(lastRow+" "+lastCol);
+			//System.out.println(lastRow+" "+lastCol);
 		    }
 		}
 	    }

@@ -7,12 +7,13 @@
 public class Cell{
     double data;//store all numbers internally as doubles since it can only store numbers and strings
     boolean containsNumber;//whether or not we have a number
-    String str; //displayed data 
+    String str; //internal string representation of data. 
     boolean doesMath;//maybe MathCell should be a separate class.....
     Sheet sheet;
+    int row;
+    int col;
     public Cell(Sheet t,double d){
 	setData(d);
-	str=String.valueOf(d);
 	containsNumber=true;
 	sheet=t;
     }
@@ -22,13 +23,17 @@ public class Cell{
 	sheet=t;
     }
     public Cell(Sheet t){
-	str="";
+	setString("");
 	containsNumber=false;
 	sheet=t;
     }
     public double getData() throws UnsupportedOperationException{
 	if(containsNumber){
-	    return data;
+	    if(s.length()>0 && s.charAt(0)=='='){
+		return operate();
+	    }else{
+		return data;
+	    }
 	}else{
 	    throw new UnsupportedOperationException("This cell contains a string");
 	}
@@ -49,24 +54,42 @@ public class Cell{
     public void setData(String s){
 	double result=0;
 	if(s.length()>0 && s.charAt(0)=='='){
-		//this is where the ma(th)gic happens
-		if(s.substring(1,5).equals("SUM(")){
-		    if(s.indexOf(")")!=-1){
-			String work=s.substring(5,s.indexOf(")"));
-			String[]nums=work.split(";");
-			for(String z : nums){
-			    result+=Double.valueOf(z);//This throws an exception if you do SUM() of any non-numbers!!!
-			}
-		    }
-		}
-		data=result;
-		str=String.valueOf(data);
-		containsNumber=true;
-	    
+	    data=null;//in this case, we calculate the data every time we call getData();
+	    str=s;
+	    containsNumber=true;
 	}else{
 	    str=s;
 	    containsNumber=false;
 	}
     }
-    
+    private double operate(String s){
+	//this is where the ma(th)gic happens
+	//if(s.length()>0 && s.charAt(0)=='='){
+	if(s.indexOf(")")!=-1){
+	    String work=s.substring(s.indexOf("(",s.indexOf(")")));
+	    String[]nums=work.split(";");
+	    for(String z : nums){
+		try{
+		    if(z.IndexOf(":")!=-1){
+			String[]range=z.split(":");
+			String frnt=range[0];
+			String back=range[range.length-1];//this is in case someone puts 2 colons in there like an idiot
+			if((Sheet.toIndex(back)[0]+Sheet.toIndex(back)[1])>Sheet.toIndex(front)[0]+Sheet.toIndex(front)[1]){
+			    String temp=front;
+			    front=back;
+			    back=temp;
+			    //if someone put them in the wrong order, swap!
+			}
+			
+			result+=sheet.getData(z);
+		    }catch(NumberFormatException nfe,StringIndexOutOfBoundsException sioobe){
+			result+=Double.valueOf(z);
+		    }
+		}
+	    }
+	}
+	//there's a buttload of potential exceptions here if the user fucks up while writing the expression. I'm going to have to figure out every single one, and catch them all in setData(String)...
+	//THIS SUCKS!!!!!
+	//actually it's not that bad, mostly SIOOBExceptions and 
+    }
 }
