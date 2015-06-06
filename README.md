@@ -2,6 +2,7 @@
 **_The Hackstreet ~~Boys~~: Jeremy Elkayam & Tina Zhang_**
 
 ![alt text](https://raw.githubusercontent.com/jeremyelkayam/MKS22X-Final-Project/Jeremy/StuycrosoftXL.png)
+
 A spreadsheet program not at all based on Microsoft Excel
 
 ### Roadmap
