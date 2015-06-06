@@ -25,6 +25,7 @@ A spreadsheet program not at all based on Microsoft Excel
 - Jeremy: setData() now ensmallens the sheet if you set it to an empty string and there is no data in the other sheets.
 - ~~Didn't test anything in class because apparently java 6 doesn't do strings with the switch statement. (these machines SUCK)~~ It is now tested and WORKING GREAT!!
 - This feature doesn't really do much for the user - it's really just there to make the .csv files as small as possible.
+- Added a splash screen. See it by running Interface using the following command: `java -splash:StuycrosoftXL.png Interface`
 
 #### 6/4
 - Jeremy: setData() now embiggens the sheet when you try to set a cell that the sheet does not contain. 
