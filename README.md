@@ -24,6 +24,7 @@ A spreadsheet program not at all based on Microsoft Excel
 
 #### 6/6
 - Jeremy: After an entire freaking year I learn that javac is stupid and doesn't actually compile all your required classes unless you tell it what you need compiled. I was messing with my code and it was doing nothing until I realized that javac was being dumb and not compiling all the classes I needed.
+- AND ALSO GOT FUNCTIONS WORKING!!!!!!!!!!!!! THIS IS THE GREATEST THING THAT THIS PROJECT HAS EVER SEEN!!!!!
 
 #### 6/5
 - Jeremy: setData() now ensmallens the sheet if you set it to an empty string and there is no data in the other sheets.
