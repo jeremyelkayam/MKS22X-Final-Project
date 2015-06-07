@@ -23,14 +23,14 @@ public class Cell{
 	sheet=t;
     }
     public Cell(Sheet t){
-	setString("");
+	setData("");
 	containsNumber=false;
 	sheet=t;
     }
     public double getData() throws UnsupportedOperationException{
 	if(containsNumber){
-	    if(s.length()>0 && s.charAt(0)=='='){
-		return operate();
+	    if(str.length()>0 && str.charAt(0)=='='){
+		return operate(str);
 	    }else{
 		return data;
 	    }
@@ -54,10 +54,10 @@ public class Cell{
     public void setData(String s){
 	double result=0;
 	if(s.length()>0 && s.charAt(0)=='='){
-	    data=null;//in this case, we calculate the data every time we call getData();
+	    data=-100000;//in this case, we calculate the data every time we call getData();
 	    str=s;
 	    containsNumber=true;
-	    operate();
+	    operate(s);
 	}else{
 	    str=s;
 	    containsNumber=false;
@@ -65,46 +65,53 @@ public class Cell{
     }
     private double operate(String s){
 	//this is where the ma(th)gic happens
+	int result;
+	if(s.substring(1,5).equals("SUM(")){
+	    result=0;
+	}else if(s.substring(1,9).equals("PRODUCT(")){
+	    result=1;
+	}else{
+	    throw new UnsupportedOperationException("Function not found");
+	}
 	if(s.length()>0 && s.charAt(0)=='=' && s.indexOf(")")!=-1){
 	    String work=s.substring(s.indexOf("(",s.indexOf(")")));
 	    String[]nums=work.split(";");
 	    for(String z : nums){
 		//try{
-		    if(z.IndexOf(":")!=-1){
-			String[]range=z.split(":");
-			if(range.length>1){
-			    String frnt=range[0];
-			    String back=range[range.length-1];//this is in case someone puts more than 1 colon in there like an idiot
-			    if((Sheet.toIndex(back)[0]+Sheet.toIndex(back)[1])>Sheet.toIndex(front)[0]+Sheet.toIndex(front)[1]){
-				String temp=front;
-				front=back;
-				back=temp;
-				//if someone put them in the wrong order, swap!
-			    }
-			    for(int r=Sheet.toIndex(front)[0];r<Sheet.toIndex(back)[1];r++){
-				for(int c=Sheet.toIndex(front)[1];c<Sheet.toIndex(back)[1];c++){
-				    //get everything in the range & add it
-				    if(s.substring(1,5).equals("SUM(")){
-					result+=sheet.getCell(row,col).getData();
-				    }else if(s.substring(1,9).equals("PRODUCT(")){
-					result*=sheet.getCell(row,col).getData();
-				    }
+		if(z.indexOf(":")!=-1){
+		    String[]range=z.split(":");
+		    if(range.length>1){
+			String front=range[0];
+			String back=range[range.length-1];//this is in case someone puts more than 1 colon in there like an idiot
+			if((Sheet.toIndex(back)[0]+Sheet.toIndex(back)[1])>Sheet.toIndex(front)[0]+Sheet.toIndex(front)[1]){
+			    String temp=front;
+			    front=back;
+			    back=temp;
+			    //if someone put them in the wrong order, swap!
+			}
+			for(int r=Sheet.toIndex(front)[0];r<Sheet.toIndex(back)[1];r++){
+			    for(int c=Sheet.toIndex(front)[1];c<Sheet.toIndex(back)[1];c++){
+				//get everything in the range & add it
+				if(s.substring(1,5).equals("SUM(")){
+				    result+=sheet.getCell(row,col).getData();
+				}else if(s.substring(1,9).equals("PRODUCT(")){
+				    result*=sheet.getCell(row,col).getData();
 				}
 			    }
-			}else{
-			    
 			}
-			/*}catch(NumberFormatException nfe,StringIndexOutOfBoundsException sioobe){
-			  result+=Double.valueOf(z);
-			  }
-			*/
+		    }else{
+			
 		    }
+		    /*}catch(NumberFormatException nfe,StringIndexOutOfBoundsException sioobe){
+		      result+=Double.valueOf(z);
+		      }
+		    */
+		}
 	    }
-	}
+	}else throw new UnsupportedOperationException();
 	//there's a buttload of potential exceptions here if the user fucks up while writing the expression. I'm going to have to figure out every single one, and catch them all in setData(String)...
 	//THIS SUCKS!!!!!
 	//actually it's not that bad, mostly SIOOBEs and maybe some NFEs
-	
-	else throw new UnsupportedOperationException();	
+	return result;
     }
 }

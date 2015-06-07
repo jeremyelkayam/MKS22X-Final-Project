@@ -22,6 +22,9 @@ A spreadsheet program not at all based on Microsoft Excel
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 
+#### 6/6
+- Jeremy: After an entire freaking year I learn that javac is stupid and doesn't actually compile all your required classes unless you tell it what you need compiled. I was messing with my code and it was doing nothing until I realized that javac was being dumb and not compiling all the classes I needed.
+
 #### 6/5
 - Jeremy: setData() now ensmallens the sheet if you set it to an empty string and there is no data in the other sheets.
 - ~~Didn't test anything in class because apparently java 6 doesn't do strings with the switch statement. (these machines SUCK)~~ It is now tested and WORKING GREAT!!
