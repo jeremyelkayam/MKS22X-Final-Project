@@ -99,13 +99,17 @@ public class Cell{
 				}
 			    }
 			}
-		    }else{
-			
 		    }
-		    /*}catch(NumberFormatException nfe,StringIndexOutOfBoundsException sioobe){
-		      result+=Double.valueOf(z);
-		      }
-		    */
+			/*}catch(NumberFormatException nfe,StringIndexOutOfBoundsException sioobe){
+			  result+=Double.valueOf(z);
+			  }
+			*/
+		}else{
+		    if(s.substring(1,5).equals("SUM(")){
+			result+=sheet.getCell(z).getData();
+		    }else if(s.substring(1,9).equals("PRODUCT(")){
+			result*=sheet.getCell(z).getData();
+		    }
 		}
 	    }
 	}else throw new UnsupportedOperationException();
