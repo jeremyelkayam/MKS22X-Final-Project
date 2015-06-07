@@ -108,7 +108,7 @@ public class Cell{
 		    if(s.substring(1,5).equals("SUM(")){
 			result+=sheet.getCell(z).getData();
 		    }else if(s.substring(1,9).equals("PRODUCT(")){
-			result*=sheet.getCell(z).getData();
+			result*=sheet.getCell(z).getData();//lol
 		    }
 		}
 	    }
