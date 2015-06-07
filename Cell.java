@@ -13,22 +13,20 @@ public class Cell{
     Sheet sheet;
     public Cell(Sheet t,double d){
 	setData(d);
-	containsNumber=true;
 	sheet=t;
     }
     public Cell(Sheet t,String s){
 	setData(s);
-	containsNumber=false;
 	sheet=t;
     }
     public Cell(Sheet t){
 	setData("");
-	containsNumber=false;
 	sheet=t;
     }
     public double getData() throws UnsupportedOperationException{
 	if(containsNumber){
 	    if(str.length()>0 && str.charAt(0)=='='){
+		System.out.println("hi");
 		return operate(str);
 	    }else{
 		return data;
@@ -38,8 +36,13 @@ public class Cell{
 	}
     }
     public String toString(){
-	if(containsNumber)
+	if(containsNumber){
+	    //System.out.println("Oh yea");
 	    return String.valueOf(getData());
+	}
+	return str;
+    }
+    public String getString(){//The difference between getString() and toString() is that when the cell contains functions, this returns the expression.
 	return str;
     }
     public boolean containsNumber(){
@@ -56,7 +59,8 @@ public class Cell{
 	    data=-100000;//in this case, we calculate the data every time we call getData();
 	    str=s;
 	    containsNumber=true;
-	    operate(s);//this is to check if you typed it in right
+	    //System.out.println("yo");
+	    //operate(s);//this is to check if you typed it in right
 	}else{
 	    str=s;
 	    containsNumber=false;
@@ -97,7 +101,8 @@ public class Cell{
 			    for(int c=Sheet.toIndex(front)[1];c<=Sheet.toIndex(back)[1];c++){
 				//get everything in the range & add it
 				//System.out.println("row:"+r+"\ncol:"+c);
-				Cell cell=sheet.getCell(r,c);
+				//try{
+				Cell cell=sheet.getCell(r,c);//this tries to find a null cell during initialization
 				if(cell.containsNumber() && cell!=this){
 				    if(s.substring(1,5).equals("SUM(")){
 					result+=cell.getData();
@@ -106,6 +111,9 @@ public class Cell{
 					result*=cell.getData();
 				    }
 				}
+				//}catch(NullPointerException e){
+				
+				//}
 			    }
 			}
 		    }

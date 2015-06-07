@@ -22,6 +22,10 @@ A spreadsheet program not at all based on Microsoft Excel
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 
+#### 6/7
+- Jeremy: Stayed up late playing video games and then decided to work on project
+- Fixed bug where functions wouldn't evaluate when loading files.
+
 #### 6/6
 - Jeremy: After an entire freaking year I learn that javac is stupid and doesn't actually compile all your required classes unless you tell it what you need compiled. I was messing with my code and it was doing nothing until I realized that javac was being dumb and not compiling all the classes I needed.
 - AND ALSO GOT FUNCTIONS WORKING!!!!!!!!!!!!! THIS IS THE GREATEST THING THAT THIS PROJECT HAS EVER SEEN!!!!!

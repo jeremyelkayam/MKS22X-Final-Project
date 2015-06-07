@@ -239,13 +239,15 @@ public class Sheet{
     private String toCSV(){
 	String result="";
 	for(Cell[]row : sheet){
-	    for(Cell z : row){
-		if(z.containsNumber()){
-		    result+=z.getData();
+	    for(int z=0;z<row.length;z++){
+		if(row[z].containsNumber()){
+		    result+=row[z].getString();
 		}else{
-		    result+="\""+z+"\"";
+		    result+="\""+row[z].getString()+"\"";
 		}
-		result+=",";
+		if(z!=row.length-1){
+		    result+=",";
+		}
 	    }
 	    result+="\n";
 	}
