@@ -4,11 +4,11 @@ Function name	Number of parameters	Returns
 (done)
 SUM()		1 or more		Sum of all parameters
 PRODUCT()	1 or more		Product of all parameters
+AVERAGE()	1 or more		Average of all parameters
+COUNT()		1 or more		Number of parameters passed that are numbers
 
 (want to add)*
 SUMSQ()		1 or more		Sum of squares of all parameters
-AVERAGE()	1 or more		Average of all parameters
-COUNT()		1 or more		Number of parameters passed that are numbers
 COUNTBLANK()	1 or more		Number of parameters passed that are blank cells
 MAX()		1 or more		Maximum number passed in
 MIN()		1 or more		Minimum number passed in
