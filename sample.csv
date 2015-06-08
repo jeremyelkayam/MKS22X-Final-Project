@@ -1,0 +1,10 @@
+"Name","Rupees"
+"Link",300.0
+"Ganon",100000.0
+"Moblin",5.0
+"Zelda",1000000.0
+"Impa",150.0
+"Octorok",1.0
+"Tektite",3.0
+"",""
+"Average",=AVERAGE(B2:B8)

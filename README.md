@@ -23,7 +23,9 @@ A spreadsheet program not at all based on Microsoft Excel
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 
 #### 6/7
-- Jeremy: Stayed up late playing video games and then decided to work on project
+- Jeremy(10:30 pm): Fixed but where functions didn't use floating-point math
+- Added average function, count function
+- Jeremy(12:30 am): Stayed up late playing video games and then decided to work on project
 - Fixed bug where functions wouldn't evaluate when loading files.
 
 #### 6/6

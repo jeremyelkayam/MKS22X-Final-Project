@@ -68,8 +68,10 @@ public class Cell{
     }
     private double operate(String s){
 	//this is where the ma(th)gic happens
-	int result;
-	if(s.substring(1,5).equals("SUM(")){
+	double result;
+	int count=0;
+	if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(") || s.substring(1,7).equals("COUNT(")){
+	    //count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
 	    result=0;
 	}else if(s.substring(1,9).equals("PRODUCT(")){
 	    result=1;
@@ -104,12 +106,13 @@ public class Cell{
 				//try{
 				Cell cell=sheet.getCell(r,c);//this tries to find a null cell during initialization
 				if(cell.containsNumber() && cell!=this){
-				    if(s.substring(1,5).equals("SUM(")){
+				    if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
 					result+=cell.getData();
 					//System.out.println("hey");
 				    }else if(s.substring(1,9).equals("PRODUCT(")){
 					result*=cell.getData();
 				    }
+				    count++;
 				}
 				//}catch(NullPointerException e){
 				
@@ -124,11 +127,12 @@ public class Cell{
 		}else{
 		    Cell cell=sheet.getCell(z);
 		    if(cell.containsNumber() && cell!=this){
-			if(s.substring(1,5).equals("SUM(")){
+			if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
 			    result+=cell.getData();
 			}else if(s.substring(1,9).equals("PRODUCT(")){
 			    result*=cell.getData();//lol
 			}
+			count++;
 		    }
 		}
 	    }
@@ -136,7 +140,11 @@ public class Cell{
 	//there's a buttload of potential exceptions here if the user fucks up while writing the expression. I'm going to have to figure out every single one, and catch them all in setData(String)...
 	//THIS SUCKS!!!!!
 	//actually it's not that bad, mostly SIOOBEs and maybe some NFEs
-	return result;
+	if(s.substring(1,9).equals("AVERAGE("))
+	    return result/count;
+	else if(s.substring(1,7).equals("COUNT("))//else is unnecessary here but I've included it for clarity
+	    return count;
+	else return result;
     }
     //IT WORKS!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!
