@@ -22,6 +22,9 @@ A spreadsheet program not at all based on Microsoft Excel
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 
+#### 6/8
+- Jeremy: Now numbers can be passed into functions in addition to cells
+- Added SUMSQ() function
 #### 6/7
 - Jeremy(10:30 pm): Fixed but where functions didn't use floating-point math
 - Added average function, count function

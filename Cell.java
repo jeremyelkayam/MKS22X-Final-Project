@@ -26,7 +26,7 @@ public class Cell{
     public double getData() throws UnsupportedOperationException{
 	if(containsNumber){
 	    if(str.length()>0 && str.charAt(0)=='='){
-		System.out.println("hi");
+		//System.out.println("hi");
 		return operate(str);
 	    }else{
 		return data;
@@ -70,7 +70,7 @@ public class Cell{
 	//this is where the ma(th)gic happens
 	double result;
 	int count=0;
-	if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(") || s.substring(1,7).equals("COUNT(")){
+	if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(") || s.substring(1,7).equals("COUNT(") || s.substring(1,7).equals("SUMSQ(")){
 	    //count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
 	    result=0;
 	}else if(s.substring(1,9).equals("PRODUCT(")){
@@ -111,6 +111,8 @@ public class Cell{
 					//System.out.println("hey");
 				    }else if(s.substring(1,9).equals("PRODUCT(")){
 					result*=cell.getData();
+				    }else if(s.substring(1,7).equals("SUMSQ(")){
+					result+=(cell.getData()*cell.getData());
 				    }
 				    count++;
 				}
@@ -125,15 +127,34 @@ public class Cell{
 			  }
 			*/
 		}else{
-		    Cell cell=sheet.getCell(z);
-		    if(cell.containsNumber() && cell!=this){
-			if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
-			    result+=cell.getData();
-			}else if(s.substring(1,9).equals("PRODUCT(")){
-			    result*=cell.getData();//lol
+		    double dat;
+		    try{
+			dat=Double.valueOf(z);
+			System.out.println("Data"+dat);
+		    }catch(NumberFormatException nfe){
+			Cell cell=sheet.getCell(z);
+			if(cell.containsNumber() && cell!=this){
+			    dat=cell.getData();
+			}else{
+			    if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(") || s.substring(1,7).equals("COUNT(") || s.substring(1,7).equals("SUMSQ(")){
+				//count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
+				dat=0;
+				System.out.println("uwotm8"+dat);
+			    }else{// if(s.substring(1,9).equals("PRODUCT(")){
+				dat=1;
+			    }
 			}
-			count++;
 		    }
+		    if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
+			result+=dat;
+		    }else if(s.substring(1,9).equals("PRODUCT(")){
+			result*=dat;//lol
+			
+			//wtf, why did i write lol here >_>
+		    }else if(s.substring(1,7).equals("SUMSQ(")){
+			result+=(dat*dat);
+		    }
+		    count++;
 		}
 	    }
 	}else throw new UnsupportedOperationException();
