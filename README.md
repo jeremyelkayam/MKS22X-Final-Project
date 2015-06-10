@@ -22,6 +22,9 @@ A spreadsheet program not at all based on Microsoft Excel
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 
+#### 6/9
+- Jeremy: Refactoring of function checks for elegance and efficiency
+- Added max & min functions
 #### 6/8
 - Jeremy: Now numbers can be passed into functions in addition to cells
 - Added SUMSQ() function

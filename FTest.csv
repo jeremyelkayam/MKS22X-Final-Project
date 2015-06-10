@@ -1,0 +1,8 @@
+1.0,2.0,3.0
+"Sum","",=SUM(A1:C1)
+"Prod","",=PRODUCT(A1:C1)
+"Avg","",=AVERAGE(A1:C1)
+"Count","",=COUNT(A1:C1)
+"Sum","squares",=SUMSQ(A1:C1)
+"Max","",=MAX(A1:C1)
+"Min","",=MIN(A1:C1)

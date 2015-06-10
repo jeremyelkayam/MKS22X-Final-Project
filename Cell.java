@@ -70,11 +70,16 @@ public class Cell{
 	//this is where the ma(th)gic happens
 	double result;
 	int count=0;
-	if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(") || s.substring(1,7).equals("COUNT(") || s.substring(1,7).equals("SUMSQ(")){
+	String t=s.substring(1,s.indexOf("("));
+	if(t.equals("SUM") || t.equals("AVERAGE") || t.equals("COUNT") || t.equals("SUMSQ")){
 	    //count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
 	    result=0;
-	}else if(s.substring(1,9).equals("PRODUCT(")){
+	}else if(t.equals("PRODUCT")){
 	    result=1;
+	}else if(t.equals("MAX")){
+	    result=-Double.MAX_VALUE; //MIN_VALUE isn't the actual minimum double..... -_-
+	}else if(t.equals("MIN")){
+	    result=Double.MAX_VALUE;
 	}else{
 	    throw new UnsupportedOperationException("Function not found");
 	}
@@ -109,10 +114,16 @@ public class Cell{
 				    if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
 					result+=cell.getData();
 					//System.out.println("hey");
-				    }else if(s.substring(1,9).equals("PRODUCT(")){
+				    }else if(t.equals("PRODUCT")){
 					result*=cell.getData();
-				    }else if(s.substring(1,7).equals("SUMSQ(")){
+				    }else if(t.equals("SUMSQ")){
 					result+=(cell.getData()*cell.getData());
+				    }else if(t.equals("MAX")){
+					if(cell.getData()>result)
+					    result=cell.getData();
+				    }else if(t.equals("MIN")){
+					if(cell.getData()<result)
+					    result=cell.getData();
 				    }
 				    count++;
 				}
@@ -135,24 +146,34 @@ public class Cell{
 			Cell cell=sheet.getCell(z);
 			if(cell.containsNumber() && cell!=this){
 			    dat=cell.getData();
-			}else{
-			    if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(") || s.substring(1,7).equals("COUNT(") || s.substring(1,7).equals("SUMSQ(")){
+			}else{//we have to initialize dat but it can't change stuff
+			    if(t.equals("SUM") || t.equals("AVERAGE") || t.equals("COUNT") || t.equals("SUMSQ")){
 				//count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
 				dat=0;
-				System.out.println("uwotm8"+dat);
+				//System.out.println("uwotm8"+dat);
+			    }else if(t.equals("MAX")){
+				dat=-Double.MAX_VALUE;
+			    }else if(t.equals("MIN")){
+				dat=Double.MAX_VALUE;
 			    }else{// if(s.substring(1,9).equals("PRODUCT(")){
 				dat=1;
 			    }
 			}
 		    }
-		    if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
+		    if(t.equals("SUM") || t.equals("AVERAGE")){
 			result+=dat;
-		    }else if(s.substring(1,9).equals("PRODUCT(")){
+		    }else if(t.equals("PRODUCT")){
 			result*=dat;//lol
 			
 			//wtf, why did i write lol here >_>
-		    }else if(s.substring(1,7).equals("SUMSQ(")){
+		    }else if(t.equals("SUMSQ")){
 			result+=(dat*dat);
+		    }else if(t.equals("MAX")){
+			if(dat>result)
+			    result=dat;
+		    }else if(t.equals("MIN")){
+			if(dat<result)
+			    result=dat;
 		    }
 		    count++;
 		}
@@ -161,9 +182,9 @@ public class Cell{
 	//there's a buttload of potential exceptions here if the user fucks up while writing the expression. I'm going to have to figure out every single one, and catch them all in setData(String)...
 	//THIS SUCKS!!!!!
 	//actually it's not that bad, mostly SIOOBEs and maybe some NFEs
-	if(s.substring(1,9).equals("AVERAGE("))
+	if(t.equals("AVERAGE"))
 	    return result/count;
-	else if(s.substring(1,7).equals("COUNT("))//else is unnecessary here but I've included it for clarity
+	else if(t.equals("COUNT"))//else is unnecessary here but I've included it for clarity
 	    return count;
 	else return result;
     }
