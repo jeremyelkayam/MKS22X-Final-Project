@@ -67,6 +67,12 @@ public class Cell{
 	}
     }
     private double operate(String s){
+	//idea creds go to albert mokrejs
+	try{
+	    s=s.substring(1);
+	    return sheet.getCell(s).getData();
+	}catch(IllegalArgumentException|UnsupportedOperationException e);
+	
 	//this is where the ma(th)gic happens
 	double result;
 	int count=0;

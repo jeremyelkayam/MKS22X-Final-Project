@@ -9,7 +9,7 @@ public class Interface extends JFrame{
     private Container pane;
     private String title;
     private Sheet sheet;
-    private Object[][]tableData;
+    private String[][]tableData;
     public Interface(){
 	title="Stuycrosoft XL";
 	this.setTitle(title);
@@ -130,9 +130,11 @@ public class Interface extends JFrame{
 
     public void createTable(){
 	String[]columnNames=new String[26];
+	sheet=new Sheet(100,26);
 	for(int z=0;z<columnNames.length;z++){
 	    columnNames[z]=numberToString(z+1);
 	}
+	for(
 	JTable table = new JTable(new String[100][26], columnNames);
 	table.setRowHeight(20);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

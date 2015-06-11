@@ -22,12 +22,20 @@ A spreadsheet program not at all based on Microsoft Excel
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 
+#### 6/11
+- Jeremy: Changed exceptions to accomodate for Albert's proposed feature, but then realized that I used another thing that Java 7 can do but Java 6 can't.... (THESE MACHINES SUCK. at the very least please install the jdk 7)
+
+#### 6/10
+- Jeremy: Stole a class from the internet to add row headers to JTable (but gave credit to the creator!)
+
 #### 6/9
 - Jeremy: Refactoring of function checks for elegance and efficiency
 - Added max & min functions
+
 #### 6/8
 - Jeremy: Now numbers can be passed into functions in addition to cells
 - Added SUMSQ() function
+
 #### 6/7
 - Jeremy(10:30 pm): Fixed but where functions didn't use floating-point math
 - Added average function, count function
