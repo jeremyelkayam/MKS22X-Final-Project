@@ -143,7 +143,11 @@ public class Interface extends JFrame{
 	JTable rowTable = new RowNumberTable(table);
 	scrollPane.setRowHeaderView(rowTable);
 	scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER,rowTable.getTableHeader());
+
 	table.getTableHeader().setReorderingAllowed(false);
+	table.setColumnSelectionAllowed(true);
+	table.setRowSelectionAllowed(true);
+
 	getContentPane().add(scrollPane);
 	
     }
