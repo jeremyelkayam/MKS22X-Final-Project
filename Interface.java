@@ -8,6 +8,8 @@ import java.awt.event.*;
 public class Interface extends JFrame{
     private Container pane;
     private String title;
+    private Sheet sheet;
+    private Object[][]tableData;
     public Interface(){
 	title="Stuycrosoft XL";
 	this.setTitle(title);
@@ -127,8 +129,11 @@ public class Interface extends JFrame{
     }
 
     public void createTable(){
-
-	JTable table = new JTable(100, 26);
+	String[]columnNames=new String[26];
+	for(int z=0;z<columnNames.length;z++){
+	    columnNames[z]=numberToString(z+1);
+	}
+	JTable table = new JTable(new String[100][26], columnNames);
 	table.setRowHeight(20);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	JScrollPane scrollPane = new JScrollPane(table);
@@ -136,6 +141,7 @@ public class Interface extends JFrame{
 	JTable rowTable = new RowNumberTable(table);
 	scrollPane.setRowHeaderView(rowTable);
 	scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER,rowTable.getTableHeader());
+	
 	getContentPane().add(scrollPane);
 	
     }

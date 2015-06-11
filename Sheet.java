@@ -158,7 +158,7 @@ public class Sheet{
 	return getCell(location);
     }
     public static int[]toIndex(String cellCor){
-	try{
+	
 	    int numIndex;
 	    int z=0;
 	    while(!Character.isDigit(cellCor.charAt(z))){
@@ -171,9 +171,7 @@ public class Sheet{
 	    int col=stringToNumber(alpha)-1;
 	    int[]result={row,col};
 	    return result;
-	}catch(StringIndexOutOfBoundsException theUser,NumberFormatException isDumb){
-	    
-	}
+	
     }
     /*
       Resizes sheet to given size.
