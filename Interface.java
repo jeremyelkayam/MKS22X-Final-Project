@@ -132,9 +132,10 @@ public class Interface extends JFrame{
 	table.setRowHeight(20);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	JScrollPane scrollPane = new JScrollPane(table);
-	
        	table.setFillsViewportHeight(true);
-
+	JTable rowTable = new RowNumberTable(table);
+	scrollPane.setRowHeaderView(rowTable);
+	scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER,rowTable.getTableHeader());
 	getContentPane().add(scrollPane);
 	
     }
