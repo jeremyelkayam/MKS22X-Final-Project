@@ -15,7 +15,7 @@ public class Interface extends JFrame{
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	pane=this.getContentPane();
-	pane.setLayout(new GridLayout(20,5));
+	pane.setLayout(new BorderLayout());
 	
 	createMenu();
 	createTable();
@@ -109,6 +109,8 @@ public class Interface extends JFrame{
 	editMenu.add(menuItem);
 
 	setJMenuBar(menuBar);
+	
+	getContentPane().add(new JTextField(),BorderLayout.PAGE_START);
     }
 
     public static String numberToString(int num) {//This method changes a base-10 integer to an alphabetic base-26 integer. A is 1, B is 2, AB is 28, etc.
@@ -128,12 +130,13 @@ public class Interface extends JFrame{
 
 	JTable table = new JTable(100, 26);
 	table.setRowHeight(20);
+	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	JScrollPane scrollPane = new JScrollPane(table);
-
+	
        	table.setFillsViewportHeight(true);
 
 	getContentPane().add(scrollPane);
-
+	
     }
     public static void main(String[]args){
 	Interface blah = new Interface();
