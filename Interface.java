@@ -134,7 +134,6 @@ public class Interface extends JFrame{
 	for(int z=0;z<columnNames.length;z++){
 	    columnNames[z]=numberToString(z+1);
 	}
-	for(
 	JTable table = new JTable(new String[100][26], columnNames);
 	table.setRowHeight(20);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

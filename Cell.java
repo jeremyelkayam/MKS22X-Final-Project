@@ -71,128 +71,128 @@ public class Cell{
 	try{
 	    s=s.substring(1);
 	    return sheet.getCell(s).getData();
-	}catch(IllegalArgumentException|UnsupportedOperationException e);
-	
-	//this is where the ma(th)gic happens
-	double result;
-	int count=0;
-	String t=s.substring(1,s.indexOf("("));
-	if(t.equals("SUM") || t.equals("AVERAGE") || t.equals("COUNT") || t.equals("SUMSQ")){
-	    //count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
-	    result=0;
-	}else if(t.equals("PRODUCT")){
-	    result=1;
-	}else if(t.equals("MAX")){
-	    result=-Double.MAX_VALUE; //MIN_VALUE isn't the actual minimum double..... -_-
-	}else if(t.equals("MIN")){
-	    result=Double.MAX_VALUE;
-	}else{
-	    throw new UnsupportedOperationException("Function not found");
-	}
-	if(s.length()>0 && s.charAt(0)=='=' && s.indexOf(")")!=-1){
-	    //System.out.println(s);
-	    String work=s.substring(s.indexOf("(")+1,s.indexOf(")"));
-	    String[]nums=work.split(";");
-	    for(String z : nums){
-		//try{
-		if(z.indexOf(":")!=-1){
-		    String[]range=z.split(":");
-		    //System.out.println(Arrays.toString(range));
-		    if(range.length>1){
-			String front=range[0];
-			String back=range[range.length-1];//this is in case someone puts more than 1 colon in there like an idiot
-			if((Sheet.toIndex(back)[0]+Sheet.toIndex(back)[1])<Sheet.toIndex(front)[0]+Sheet.toIndex(front)[1]){
-			    //System.out.println("lol");
-			    String temp=front;
-			    front=back;
-			    back=temp;
-			    //if someone put them in the wrong order, swap!
-			}
-			//System.out.println(back);
-			//System.out.println(Sheet.toIndex(back)[1]);
-			for(int r=Sheet.toIndex(front)[0];r<=Sheet.toIndex(back)[0];r++){
-			    for(int c=Sheet.toIndex(front)[1];c<=Sheet.toIndex(back)[1];c++){
-				//get everything in the range & add it
-				//System.out.println("row:"+r+"\ncol:"+c);
-				//try{
-				Cell cell=sheet.getCell(r,c);//this tries to find a null cell during initialization
-				if(cell.containsNumber() && cell!=this){
-				    if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
-					result+=cell.getData();
-					//System.out.println("hey");
-				    }else if(t.equals("PRODUCT")){
-					result*=cell.getData();
-				    }else if(t.equals("SUMSQ")){
-					result+=(cell.getData()*cell.getData());
-				    }else if(t.equals("MAX")){
-					if(cell.getData()>result)
-					    result=cell.getData();
-				    }else if(t.equals("MIN")){
-					if(cell.getData()<result)
-					    result=cell.getData();
+	}catch(IllegalArgumentException|UnsupportedOperationException e){//this line does not compile in java 6 or earlier	
+	    //this is where the ma(th)gic happens
+	    double result;
+	    int count=0;
+	    String t=s.substring(1,s.indexOf("("));
+	    if(t.equals("SUM") || t.equals("AVERAGE") || t.equals("COUNT") || t.equals("SUMSQ")){
+		//count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
+		result=0;
+	    }else if(t.equals("PRODUCT")){
+		result=1;
+	    }else if(t.equals("MAX")){
+		result=-Double.MAX_VALUE; //MIN_VALUE isn't the actual minimum double..... -_-
+	    }else if(t.equals("MIN")){
+		result=Double.MAX_VALUE;
+	    }else{
+		throw new UnsupportedOperationException("Function not found");
+	    }
+	    if(s.length()>0 && s.charAt(0)=='=' && s.indexOf(")")!=-1){
+		//System.out.println(s);
+		String work=s.substring(s.indexOf("(")+1,s.indexOf(")"));
+		String[]nums=work.split(";");
+		for(String z : nums){
+		    //try{
+		    if(z.indexOf(":")!=-1){
+			String[]range=z.split(":");
+			//System.out.println(Arrays.toString(range));
+			if(range.length>1){
+			    String front=range[0];
+			    String back=range[range.length-1];//this is in case someone puts more than 1 colon in there like an idiot
+			    if((Sheet.toIndex(back)[0]+Sheet.toIndex(back)[1])<Sheet.toIndex(front)[0]+Sheet.toIndex(front)[1]){
+				//System.out.println("lol");
+				String temp=front;
+				front=back;
+				back=temp;
+				//if someone put them in the wrong order, swap!
+			    }
+			    //System.out.println(back);
+			    //System.out.println(Sheet.toIndex(back)[1]);
+			    for(int r=Sheet.toIndex(front)[0];r<=Sheet.toIndex(back)[0];r++){
+				for(int c=Sheet.toIndex(front)[1];c<=Sheet.toIndex(back)[1];c++){
+				    //get everything in the range & add it
+				    //System.out.println("row:"+r+"\ncol:"+c);
+				    //try{
+				    Cell cell=sheet.getCell(r,c);//this tries to find a null cell during initialization
+				    if(cell.containsNumber() && cell!=this){
+					if(s.substring(1,5).equals("SUM(") || s.substring(1,9).equals("AVERAGE(")){
+					    result+=cell.getData();
+					    //System.out.println("hey");
+					}else if(t.equals("PRODUCT")){
+					    result*=cell.getData();
+					}else if(t.equals("SUMSQ")){
+					    result+=(cell.getData()*cell.getData());
+					}else if(t.equals("MAX")){
+					    if(cell.getData()>result)
+						result=cell.getData();
+					}else if(t.equals("MIN")){
+					    if(cell.getData()<result)
+						result=cell.getData();
+					}
+					count++;
 				    }
-				    count++;
+				    //}catch(NullPointerException e){
+				    
+				    //}
 				}
-				//}catch(NullPointerException e){
-				
-				//}
 			    }
 			}
-		    }
 			/*}catch(NumberFormatException nfe,StringIndexOutOfBoundsException sioobe){
 			  result+=Double.valueOf(z);
 			  }
 			*/
-		}else{
-		    double dat;
-		    try{
-			dat=Double.valueOf(z);
-			System.out.println("Data"+dat);
-		    }catch(NumberFormatException nfe){
-			Cell cell=sheet.getCell(z);
-			if(cell.containsNumber() && cell!=this){
-			    dat=cell.getData();
-			}else{//we have to initialize dat but it can't change stuff
-			    if(t.equals("SUM") || t.equals("AVERAGE") || t.equals("COUNT") || t.equals("SUMSQ")){
-				//count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
-				dat=0;
-				//System.out.println("uwotm8"+dat);
-			    }else if(t.equals("MAX")){
-				dat=-Double.MAX_VALUE;
-			    }else if(t.equals("MIN")){
-				dat=Double.MAX_VALUE;
-			    }else{// if(s.substring(1,9).equals("PRODUCT(")){
-				dat=1;
+		    }else{
+			double dat;
+			try{
+			    dat=Double.valueOf(z);
+			    System.out.println("Data"+dat);
+			}catch(NumberFormatException nfe){
+			    Cell cell=sheet.getCell(z);
+			    if(cell.containsNumber() && cell!=this){
+				dat=cell.getData();
+			    }else{//we have to initialize dat but it can't change stuff
+				if(t.equals("SUM") || t.equals("AVERAGE") || t.equals("COUNT") || t.equals("SUMSQ")){
+				    //count doesn't use result but we should initialize it anyway + make sure it doesn't throw an UOE
+				    dat=0;
+				    //System.out.println("uwotm8"+dat);
+				}else if(t.equals("MAX")){
+				    dat=-Double.MAX_VALUE;
+				}else if(t.equals("MIN")){
+				    dat=Double.MAX_VALUE;
+				}else{// if(s.substring(1,9).equals("PRODUCT(")){
+				    dat=1;
+				}
 			    }
 			}
+			if(t.equals("SUM") || t.equals("AVERAGE")){
+			    result+=dat;
+			}else if(t.equals("PRODUCT")){
+			    result*=dat;//lol
+			    
+			    //wtf, why did i write lol here >_>
+			}else if(t.equals("SUMSQ")){
+			    result+=(dat*dat);
+			}else if(t.equals("MAX")){
+			    if(dat>result)
+				result=dat;
+			}else if(t.equals("MIN")){
+			    if(dat<result)
+				result=dat;
+			}
+			count++;
 		    }
-		    if(t.equals("SUM") || t.equals("AVERAGE")){
-			result+=dat;
-		    }else if(t.equals("PRODUCT")){
-			result*=dat;//lol
-			
-			//wtf, why did i write lol here >_>
-		    }else if(t.equals("SUMSQ")){
-			result+=(dat*dat);
-		    }else if(t.equals("MAX")){
-			if(dat>result)
-			    result=dat;
-		    }else if(t.equals("MIN")){
-			if(dat<result)
-			    result=dat;
-		    }
-		    count++;
 		}
-	    }
-	}else throw new UnsupportedOperationException();
-	//there's a buttload of potential exceptions here if the user fucks up while writing the expression. I'm going to have to figure out every single one, and catch them all in setData(String)...
-	//THIS SUCKS!!!!!
-	//actually it's not that bad, mostly SIOOBEs and maybe some NFEs
-	if(t.equals("AVERAGE"))
-	    return result/count;
-	else if(t.equals("COUNT"))//else is unnecessary here but I've included it for clarity
-	    return count;
-	else return result;
+	    }else throw new UnsupportedOperationException();
+	    //there's a buttload of potential exceptions here if the user fucks up while writing the expression. I'm going to have to figure out every single one, and catch them all in setData(String)...
+	    //THIS SUCKS!!!!!
+	    //actually it's not that bad, mostly SIOOBEs and maybe some NFEs
+	    if(t.equals("AVERAGE"))
+		return result/count;
+	    else if(t.equals("COUNT"))//else is unnecessary here but I've included it for clarity
+		return count;
+	    else return result;
+	}
     }
     //IT WORKS!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!

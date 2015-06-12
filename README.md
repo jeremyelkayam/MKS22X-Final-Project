@@ -24,6 +24,8 @@ A spreadsheet program not at all based on Microsoft Excel
 
 #### 6/11
 - Jeremy: Changed exceptions to accomodate for Albert's proposed feature, but then realized that I used another thing that Java 7 can do but Java 6 can't.... (THESE MACHINES SUCK. at the very least please install the jdk 7)
+- Compiled & tested the code at home (I'll have to ask Mr. K if we can use Marge in class tomorrow)
+- You can now set the contents of a cell equal to another cell (only works with numbers, thanks again Albert for suggesting this).
 
 #### 6/10
 - Jeremy: Stole a class from the internet to add row headers to JTable (but gave credit to the creator!)
