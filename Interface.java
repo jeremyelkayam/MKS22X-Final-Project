@@ -10,6 +10,8 @@ public class Interface extends JFrame{
     private String title;
     private Sheet sheet;
     private String[][]tableData;
+
+    private JTable table;
     public Interface(){
 	title="Stuycrosoft XL";
 	this.setTitle(title);
@@ -134,18 +136,36 @@ public class Interface extends JFrame{
 	for(int z=0;z<columnNames.length;z++){
 	    columnNames[z]=numberToString(z+1);
 	}
-	JTable table = new JTable(new String[100][26], columnNames);
+	table = new JTable(new String[100][26], columnNames);
 	table.setRowHeight(20);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	JScrollPane scrollPane = new JScrollPane(table);
        	table.setFillsViewportHeight(true);
+
+
 	JTable rowTable = new RowNumberTable(table);
 	scrollPane.setRowHeaderView(rowTable);
 	scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER,rowTable.getTableHeader());
-	
+
+	table.getTableHeader().setReorderingAllowed(false);
+	table.setColumnSelectionAllowed(true);
+	table.setRowSelectionAllowed(true);
+
 	getContentPane().add(scrollPane);
 	
     }
+    
+    public void storeData(){
+	for(int i=0;i<table.getRowCount();i++){
+	    for(int j=0;j<table.getColumnCount();j++){
+		String location = "" + table.getColumnName(j) + (i+1);
+		sheet.setData(location, table.getValueAt(i, j).toString());
+	    }
+	}
+
+	//	System.out.println(sheet);
+    }
+    
     public static void main(String[]args){
 	Interface blah = new Interface();
 	blah.setVisible(true);
