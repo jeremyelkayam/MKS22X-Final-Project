@@ -270,4 +270,13 @@ public class Sheet{
 	    System.out.println("Unable to write file.");
 	}
     }
+    public String[][]toStringArray(){
+	String[][]result=new String[sheet.length][sheet[0].length];
+	for(int r=0;r<sheet.length;r++){
+	    for(int c=0;c<sheet[0].length;c++){
+		result[r][c]=sheet[r][c].toString();
+	    }
+	}
+	return result;
+    }
 }
