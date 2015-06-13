@@ -51,7 +51,7 @@ public class Sheet{
      */
     public void initialize(){
 	for(int r=0;r<sheet.length;r++){
-	    for(int c=0;c<sheet.length;c++){
+	    for(int c=0;c<sheet[0].length;c++){
 		sheet[r][c]=new Cell(this);
 	    }
 	}
@@ -105,12 +105,15 @@ public class Sheet{
       getCell(row,col).setData(value);
       }
     */
-    public void setData(String location,String value){
+    public void setData(String location, String value){
+	int row=toIndex(location)[0];
+	int col=toIndex(location)[1];
+	setData(row,col,value);
+    }
+    public void setData(int row,int col,String value){
 	//TODO czech if the user is setting the cell to an empty string. If user is,then automatically ensmallen the sheet.
 	if(value.equals("")){
-	    getCell(location).setData(value);
-	    int row=toIndex(location)[0];
-	    int col=toIndex(location)[1];
+	    getCell(row,col).setData(value);
 	    int lastRow=0;
 	    int lastCol=0;
 	    for(int r=0;r<sheet.length;r++){
@@ -132,7 +135,7 @@ public class Sheet{
 	    if(lastCol<col)
 		resize(sheet.length,lastCol+1);	    
 	}else{ 
-	    getCellResize(location).setData(value);
+	    getCellResize(row,col).setData(value);
 	}
     }
     public void setData(String location,double value){
@@ -144,18 +147,24 @@ public class Sheet{
       the sheet is automatically resized to include that cell.
      */
     public Cell getCellResize(String location){
-	if(!hasCell(location)){
-	    int row=toIndex(location)[0]+1;
-	    int col=toIndex(location)[1]+1;
+	return getCellResize(toIndex(location)[0],toIndex(location)[1]);
+    }
+    public Cell getCellResize(int row,int col){
+	if(!hasCell(row,col)){
+	    row++;
+	    col++;
 	    if(row>sheet.length && col>sheet[0].length){//expand length and height to accomodate cell
 		resize(row,col);
+		System.out.println("hi");
 	    }else if(row>sheet.length){//expand length to acco
 		resize(row,sheet[0].length);
 	    }else if(col>sheet[0].length){
 		resize(sheet.length,col);
 	    }//otherwise we don't need to worry because it has that cell
+	    row--;
+	    col--;
 	}
-	return getCell(location);
+	return getCell(row,col);
     }
     public static int[]toIndex(String cellCor)throws IllegalArgumentException{
 	try{
@@ -234,7 +243,10 @@ public class Sheet{
      */
     public boolean hasCell(String cellCor){
 	int[]lol=toIndex(cellCor);
-	return (lol[0]<sheet.length) && (lol[1]<sheet[0].length);
+	return hasCell(lol[0],lol[1]);
+    }
+    public boolean hasCell(int row,int col){
+	return (row<sheet.length && col<sheet[0].length);
     }
     /*
       Returns a string representing the sheet in CSV form

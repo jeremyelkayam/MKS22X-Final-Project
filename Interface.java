@@ -4,6 +4,7 @@ import javax.swing.table.*;
 import javax.swing.text.*;
 import javax.swing.border.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Interface extends JFrame{
     private Container pane;
@@ -136,7 +137,7 @@ public class Interface extends JFrame{
 	for(int z=0;z<columnNames.length;z++){
 	    columnNames[z]=numberToString(z+1);
 	}
-	table = new JTable(new String[100][26], columnNames);
+	table = new MyTable(new String[100][26], columnNames);
 	table.setRowHeight(20);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	JScrollPane scrollPane = new JScrollPane(table);
@@ -170,5 +171,31 @@ public class Interface extends JFrame{
 	Interface blah = new Interface();
 	blah.setVisible(true);
     }
-    
+    private class MyTable extends JTable{
+
+	public MyTable(){
+	    super();
+	}
+	public MyTable(int numRows,int numCols){
+	    super(numRows,numCols);
+	}
+	public MyTable(Object[][]rowData, Object[]columnNames){
+	    super(rowData,columnNames);
+	}
+	public MyTable(TableModel dm){
+	    super(dm);
+	}
+	public MyTable(TableModel dm,TableColumnModel cm){
+	    super(dm,cm);
+	}
+	public MyTable(TableModel dm,TableColumnModel cm, ListSelectionModel sm){
+	    super(dm,cm,sm);
+	}
+	public MyTable(Vector rowDat,Vector colNames){
+	    super(rowDat,colNames);
+	}
+	public boolean editCellAt(int row, int col,EventObject e){
+	    return super.editCellAt(row,col,e);
+	}
+    }
 }
