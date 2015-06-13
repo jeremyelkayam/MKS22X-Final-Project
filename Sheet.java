@@ -142,6 +142,9 @@ public class Sheet{
 	//don't need the empty cell clause here because any number (even 0) will fill a cell.
 	getCellResize(location).setData(value);
     }
+    public void setData(int row,int col,double value){
+	getCellResize(row,col).setData(value);
+    }
     /*
       Gets cell at location. If this sheet does not contain a cell at location,
       the sheet is automatically resized to include that cell.

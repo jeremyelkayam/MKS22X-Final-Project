@@ -132,12 +132,12 @@ public class Interface extends JFrame{
     }
 
     public void createTable(){
-	String[]columnNames=new String[26];
-	sheet=new Sheet(100,26);
+	String[]columnNames=new String[10];
+	sheet=new Sheet(10,10);
 	for(int z=0;z<columnNames.length;z++){
 	    columnNames[z]=numberToString(z+1);
 	}
-	table = new MyTable(new String[100][26], columnNames);
+	table = new MyTable(sheet.toStringArray(), columnNames);
 	table.setRowHeight(20);
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	JScrollPane scrollPane = new JScrollPane(table);
@@ -172,16 +172,18 @@ public class Interface extends JFrame{
 	blah.setVisible(true);
     }
     private class MyTable extends JTable{
-
+	/*
 	public MyTable(){
 	    super();
 	}
 	public MyTable(int numRows,int numCols){
 	    super(numRows,numCols);
 	}
+	*/
 	public MyTable(Object[][]rowData, Object[]columnNames){
 	    super(rowData,columnNames);
 	}
+	/*
 	public MyTable(TableModel dm){
 	    super(dm);
 	}
@@ -194,8 +196,20 @@ public class Interface extends JFrame{
 	public MyTable(Vector rowDat,Vector colNames){
 	    super(rowDat,colNames);
 	}
-	public boolean editCellAt(int row, int col,EventObject e){
-	    return super.editCellAt(row,col,e);
+	*/
+	public void setValueAt(Object val,int row, int col){
+	    String v=val.toString();
+	    //System.out.println("hi "+v);
+	    try{
+		double d=Double.valueOf(v);
+		sheet.setData(row,col,d);
+	    }catch(NumberFormatException nfe){
+		sheet.setData(row,col,v);
+	    }
+	    v=sheet.getCell(row,col).toString();
+	    System.out.println(v);
+	    super.setValueAt(v,row,col);
+	    System.out.println(sheet);
 	}
     }
 }
