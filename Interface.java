@@ -176,7 +176,7 @@ public class Interface extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e){
 	String act=e.getActionCommand();
-	System.out.println("lol");
+	//System.out.println("lol");
 	switch(act){
 	case "save":
 	    
@@ -199,7 +199,8 @@ public class Interface extends JFrame implements ActionListener{
 		    
 		}
 		System.out.println(sheet);
-	    }catch(NullPointerException e){}
+	    }catch(NullPointerException teamname){}
+	    //THIS DOES NOT PUT THE SHEET INTO THE GUI RIGHT NOW!!!!
 	    break;
 	default:
 	    break;

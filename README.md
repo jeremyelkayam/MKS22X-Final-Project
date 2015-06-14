@@ -22,6 +22,10 @@ A spreadsheet program not at all based on Microsoft Excel
 ### Changelog
 (Remember to update this every time you make changes... otherwise, face the wrath of the brutish taskmaster Mr. K!!)
 
+#### 6/14
+- Jeremy: I tried random crap to see what I could do with gui
+- I got it to open files but I didn't make it display them in the gui so it just prints the sheet. 
+
 #### 6/11
 - Jeremy: Changed exceptions to accomodate for Albert's proposed feature, but then realized that I used another thing that Java 7 can do but Java 6 can't.... (THESE MACHINES SUCK. at the very least please install the jdk 7)
 - Compiled & tested the code at home (I'll have to ask Mr. K if we can use Marge in class tomorrow)

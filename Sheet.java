@@ -20,6 +20,13 @@ public class Sheet{
      */
     public Sheet(String filename)throws FileNotFoundException,IOException{
 	BufferedReader br=new BufferedReader(new FileReader(filename));
+	loadSheet(br);
+    }
+    public Sheet(File f)throws IOException{
+	BufferedReader br=new BufferedReader(new FileReader(f));
+	loadSheet(br);
+    }
+    private void loadSheet(BufferedReader br)throws FileNotFoundException,IOException{
 	ArrayList<Cell[]>list=new ArrayList<Cell[]>();
 	while(br.ready()){
 	    String line=br.readLine();
@@ -46,7 +53,6 @@ public class Sheet{
 	    sheet[z]=list.get(z);
 	}
     }
-    
     /*
       Initializes every cell in the sheet to an empty cell
      */
