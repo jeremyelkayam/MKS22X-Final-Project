@@ -5,12 +5,16 @@ import javax.swing.text.*;
 import javax.swing.border.*;
 import java.awt.event.*;
 import java.util.*;
+import javax.swing.event.*;
+import javax.swing.filechooser.*;
+import java.io.*;
 
-public class Interface extends JFrame{
+public class Interface extends JFrame implements ActionListener{
     private Container pane;
     private String title;
     private Sheet sheet;
     private String[][]tableData;
+    private JTextField functionThing;
 
     private JTable table;
     public Interface(){
@@ -52,6 +56,8 @@ public class Interface extends JFrame{
 	menuItem = new JMenuItem("Open..");
 	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.ALT_MASK));
 	menuItem.getAccessibleContext().setAccessibleDescription("Open existing file");
+	menuItem.setActionCommand("open");
+	menuItem.addActionListener(this);
 	fileMenu.add(menuItem);
 
 	menuItem = new JMenuItem("Rename..");
@@ -115,7 +121,8 @@ public class Interface extends JFrame{
 
 	setJMenuBar(menuBar);
 	
-	getContentPane().add(new JTextField(),BorderLayout.PAGE_START);
+	functionThing=new JTextField();
+	getContentPane().add(functionThing,BorderLayout.PAGE_START);
     }
 
     public static String numberToString(int num) {//This method changes a base-10 integer to an alphabetic base-26 integer. A is 1, B is 2, AB is 28, etc.
@@ -167,6 +174,38 @@ public class Interface extends JFrame{
 	//	System.out.println(sheet);
     }
     
+    public void actionPerformed(ActionEvent e){
+	String act=e.getActionCommand();
+	System.out.println("lol");
+	switch(act){
+	case "save":
+	    
+	    break;
+	case "open":
+	    try{
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+									     "CSV files", "csv");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(this);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+		    //System.out.println("You chose to open this file: " +
+		    //		       chooser.getSelectedFile().getName());
+		    
+		}
+		try{
+		    sheet=new Sheet(chooser.getSelectedFile());
+		}catch(IOException ioe){
+		    
+		}
+		System.out.println(sheet);
+	    }catch(NullPointerException e){}
+	    break;
+	default:
+	    break;
+	}
+    }
+    
     public static void main(String[]args){
 	Interface blah = new Interface();
 	blah.setVisible(true);
@@ -207,9 +246,15 @@ public class Interface extends JFrame{
 		sheet.setData(row,col,v);
 	    }
 	    v=sheet.getCell(row,col).toString();
-	    System.out.println(v);
+	    functionThing.setText(sheet.getCell(row,col).getString());
+	    //System.out.println(v);
 	    super.setValueAt(v,row,col);
 	    System.out.println(sheet);
+	}
+	public void valueChanged(ListSelectionEvent e){
+	    System.out.println(e);
+	    super.valueChanged(e);
+	    System.out.println(getValueAt(1,2));
 	}
     }
 }
