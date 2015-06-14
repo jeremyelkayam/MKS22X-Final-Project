@@ -51,6 +51,7 @@ public class TempInterface{
 		}
 		break;*/
 	    case "save":
+		
 		System.out.println("Please enter a filename");
 		String name=getSomething();
 		sheet.save(name);
@@ -59,7 +60,7 @@ public class TempInterface{
 		    name+=".csv";
 		}
 		System.out.println("File saved as \""+name+"\".");
-		break;
+		
 	    case "load":
 		while(true){
 		    System.out.println("Please enter a filename");

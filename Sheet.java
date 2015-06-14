@@ -292,6 +292,18 @@ public class Sheet{
 	    System.out.println("Unable to write file.");
 	}
     }
+    public void save(File file){
+	//cut & pasting code like this is dumb but I procrastinated and now I'm pressed for time and I don't want to think hard about a good way to do it
+	
+	try{
+	    FileWriter fw=new FileWriter(file);
+	    fw.write(toCSV());
+	    fw.close();
+	}catch(IOException ioe){
+	    System.out.println("Unable to write file.");
+	}
+
+    }
     public String[][]toStringArray(){
 	String[][]result=new String[sheet.length][sheet[0].length];
 	for(int r=0;r<sheet.length;r++){

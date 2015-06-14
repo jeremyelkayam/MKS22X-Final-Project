@@ -25,6 +25,7 @@ A spreadsheet program not at all based on Microsoft Excel
 #### 6/14
 - Jeremy: I tried random crap to see what I could do with gui
 - I got it to open files but I didn't make it display them in the gui so it just prints the sheet. 
+- Yeah now it can save stuff too but that doesn't change the fact that it really doesn't work at all.
 
 #### 6/11
 - Jeremy: Changed exceptions to accomodate for Albert's proposed feature, but then realized that I used another thing that Java 7 can do but Java 6 can't.... (THESE MACHINES SUCK. at the very least please install the jdk 7)

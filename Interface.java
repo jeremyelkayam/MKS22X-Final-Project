@@ -68,6 +68,8 @@ public class Interface extends JFrame implements ActionListener{
 	menuItem = new JMenuItem("Save");
 	menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 	menuItem.getAccessibleContext().setAccessibleDescription("Save file");
+	menuItem.setActionCommand("save");
+	menuItem.addActionListener(this);
 	fileMenu.add(menuItem);
 
 	//adding items to editMenu
@@ -176,35 +178,45 @@ public class Interface extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e){
 	String act=e.getActionCommand();
+	JFileChooser chooser = new JFileChooser();
+	FileNameExtensionFilter filter = new FileNameExtensionFilter(
+								     "CSV files", "csv");
+	chooser.setFileFilter(filter);
 	//System.out.println("lol");
+	int returnVal=0;
 	switch(act){
 	case "save":
-	    
+	    returnVal = chooser.showSaveDialog(this);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+		//System.out.println("You chose to open this file: " +
+		//		       chooser.getSelectedFile().getName());
+		sheet.save(chooser.getSelectedFile());
+	    }else{
+		
+	    }
+	    System.out.println(sheet);
 	    break;
 	case "open":
-	    try{
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(
-									     "CSV files", "csv");
-		chooser.setFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(this);
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-		    //System.out.println("You chose to open this file: " +
-		    //		       chooser.getSelectedFile().getName());
-		    
-		}
+	    returnVal = chooser.showOpenDialog(this);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+		//System.out.println("You chose to open this file: " +
+		//		       chooser.getSelectedFile().getName());
+		
+		
 		try{
 		    sheet=new Sheet(chooser.getSelectedFile());
 		}catch(IOException ioe){
 		    
 		}
-		System.out.println(sheet);
-	    }catch(NullPointerException teamname){}
-	    //THIS DOES NOT PUT THE SHEET INTO THE GUI RIGHT NOW!!!!
+	    }else{
+		
+	    }
+	    System.out.println(sheet);
 	    break;
 	default:
 	    break;
 	}
+	//THIS DOES NOT PUT THE SHEET INTO THE GUI RIGHT NOW!!!!
     }
     
     public static void main(String[]args){
