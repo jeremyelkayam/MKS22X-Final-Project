@@ -5,6 +5,15 @@
 
 A spreadsheet program not at all based on Microsoft Excel
 
+### Instructions
+- Compile/run Interface.java (cool but not fully working) or TempInterface.java (has all features properly implemented, but cumbersome to use)
+
+### Features
+- Saving/loading sheets as .csv files
+- Storing numbers & strings in sheets
+- Setting cells equal to other cells
+- Setting cells equal to functions which can take cells or numbers as parameters (See FDocs.txt for more information on this)
+
 ### Roadmap
 - Create an internal representation of the spreadsheet (Create a Data object and make a 2D array of it)
 - Storing data (strings, ints, floats)
